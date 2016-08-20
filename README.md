@@ -1,0 +1,4 @@
+VIM
+=====
+clone
+run :PlugInstall
