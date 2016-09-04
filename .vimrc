@@ -1,6 +1,10 @@
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/powerline/powerline.git'
+"call plug#end()
+"call plug#begin('~/.vim/bundle')
+Plug 'https://github.com/scrooloose/nerdtree.git'
 call plug#end()
+syntax enable
 
 set nocompatible
 set term=xterm-256color
@@ -13,7 +17,9 @@ set shiftwidth=4
 set softtabstop=4
 set showcmd
 set incsearch
-
+set hlsearch
+set nowrap
+set hidden
 
 " Disable arrow keys for practicing
 noremap <up> <nop>
