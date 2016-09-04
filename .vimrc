@@ -14,6 +14,17 @@ set softtabstop=4
 set showcmd
 set incsearch
 
+
+" Disable arrow keys for practicing
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
 " powerline
 set laststatus=2
 set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
