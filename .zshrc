@@ -6,6 +6,10 @@
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="agnoster"
+export TERM="xterm-256color"
+
+DEFAULT_USER=nocchio
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -84,8 +88,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
-#prompt_context() {
-#    if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-#        prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-#    fi
-#}
+prompt_context() {
+    if [[ "$USER" = "$DEFAULT_USER" ]]; then
+        prompt_segment black default "%(!.%{%F{yellow}%}.)"
+    else
+        prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+    fi
+    prompt_segment blue black  "%*"
+}
