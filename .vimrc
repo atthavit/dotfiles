@@ -1,13 +1,28 @@
 call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/powerline/powerline.git'
-"call plug#end()
-"call plug#begin('~/.vim/bundle')
+" Plug 'https://github.com/powerline/powerline.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
-call plug#end()
-syntax enable
+Plug 'https://github.com/vim-airline/vim-airline.git'
+Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+Plug 'https://github.com/kien/ctrlp.vim.git'
 
+" Themes
+Plug 'https://github.com/sickill/vim-monokai.git'
+Plug 'https://github.com/tomasr/molokai'
+Plug 'https://github.com/altercation/vim-colors-solarized.git'
+Plug 'https://github.com/morhetz/gruvbox.git'
+Plug 'https://github.com/sjl/badwolf.git'
+call plug#end()
 set nocompatible
+
+syntax enable
+set t_Co=256
+set background=dark
 set term=xterm-256color
+"let g:solarized_termcolors=256
+"colorscheme molokai
+colorscheme gruvbox
+
+
 
 set nu
 set relativenumber
@@ -32,5 +47,8 @@ imap <left> <nop>
 imap <right> <nop>
 
 " powerline
+"set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
 set laststatus=2
-set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
+let g:airline_powerline_fonts = 1
+let g:airline_theme='powerlineish'
+
