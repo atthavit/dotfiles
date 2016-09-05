@@ -6,7 +6,7 @@
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="agnoster"
-export TERM="xterm-256color"
+#export TERM="xterm-256color"
 
 DEFAULT_USER=nocchio
 
@@ -90,9 +90,13 @@ source $ZSH/oh-my-zsh.sh
 
 prompt_context() {
     if [[ "$USER" = "$DEFAULT_USER" ]]; then
-        prompt_segment black default "%(!.%{%F{yellow}%}.)"
+        # prompt_segment black default "%(!.%{%F{yellow}%}.)"
     else
         prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
     fi
     prompt_segment blue black  "%*"
 }
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[1~"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[4~"   end-of-line
