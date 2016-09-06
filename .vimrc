@@ -11,16 +11,21 @@ Plug 'https://github.com/tomasr/molokai'
 Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/sjl/badwolf.git'
+Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 set nocompatible
 
 syntax enable
 set t_Co=256
-set background=dark
 set term=xterm-256color
 "let g:solarized_termcolors=256
-"colorscheme molokai
+
+set background=dark
+let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
+
+"set background=light
+"colorscheme PaperColor
 
 
 
