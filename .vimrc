@@ -40,6 +40,8 @@ set incsearch
 set hlsearch
 set nowrap
 set hidden
+set splitright
+set splitbelow
 
 " Disable arrow keys for practicing
 noremap <up> <nop>
