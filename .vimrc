@@ -42,6 +42,7 @@ set nowrap
 set hidden
 set splitright
 set splitbelow
+set backspace=2
 
 " Disable arrow keys for practicing
 noremap <up> <nop>
