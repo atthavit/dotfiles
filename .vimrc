@@ -43,6 +43,7 @@ set hidden
 set splitright
 set splitbelow
 set backspace=2
+set encoding=utf-8
 
 " Disable arrow keys for practicing
 noremap <up> <nop>
