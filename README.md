@@ -10,3 +10,17 @@ powerline fonts https://github.com/powerline/fonts
 clone
 
 run :PlugInstall
+
+tmux
+=====
+install tmux (https://github.com/tmux/tmux)  
+for powerline  
+```
+pip install powerline-status
+```
+may need to change powerline path in .tmux.conf  
+
+install tpm (Tmux Plugin Manager) (https://github.com/tmux-plugins/tpm)  
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
