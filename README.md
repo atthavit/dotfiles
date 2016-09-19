@@ -30,5 +30,5 @@ ctrl+b I to install plugins
 
 Putty
 =====
-Fira Mono for Powerline font regular 10pt  
+Dejavu Mono for Powerline regular 10pt Clear Type  
 color gruvbox-dark-hard-white  
