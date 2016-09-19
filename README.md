@@ -7,13 +7,14 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ```
 powerline fonts https://github.com/powerline/fonts  
 
-clone
+create symlink to homedir  
 
 run :PlugInstall
 
 tmux
 =====
 install tmux (https://github.com/tmux/tmux)  
+create symlink to homedir  
 for powerline  
 ```
 pip install powerline-status
@@ -24,3 +25,5 @@ install tpm (Tmux Plugin Manager) (https://github.com/tmux-plugins/tpm)
 ```
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
+
+ctrl+b I to install plugins
