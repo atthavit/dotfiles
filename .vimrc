@@ -23,6 +23,7 @@ set term=xterm-256color
 set background=dark
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
+set t_ut= "background issue in tmux (https://github.com/morhetz/gruvbox/issues/81)
 
 "set background=light
 "colorscheme PaperColor
