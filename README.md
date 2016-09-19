@@ -1,4 +1,4 @@
-VIM
+vim
 =====
 install vim-plug (https://github.com/junegunn/vim-plug)
 ```
@@ -26,4 +26,9 @@ install tpm (Tmux Plugin Manager) (https://github.com/tmux-plugins/tpm)
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-ctrl+b I to install plugins
+ctrl+b I to install plugins  
+
+Putty
+=====
+Fira Mono for Powerline font regular 10pt  
+color gruvbox-dark-hard-white  
