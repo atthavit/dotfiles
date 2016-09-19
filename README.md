@@ -1,6 +1,6 @@
 vim
 =====
-* install vim-plug (https://github.com/junegunn/vim-plug)
+* install vim-plug (https://github.com/junegunn/vim-plug)  
 ```
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -31,11 +31,11 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 zsh
 =====
 * install zsh
-* install oh my zsh (https://github.com/robbyrussell/oh-my-zsh)
+* install oh my zsh (https://github.com/robbyrussell/oh-my-zsh)  
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
-* install powerlevel9k theme (https://github.com/bhilburn/powerlevel9k)
+* install powerlevel9k theme (https://github.com/bhilburn/powerlevel9k)  
 ```
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 ```
