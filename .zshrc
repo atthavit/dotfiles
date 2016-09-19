@@ -5,10 +5,13 @@
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 #export TERM="xterm-256color"
 
-DEFAULT_USER=nocchio
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
+
+DEFAULT_USER=$USER
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -88,14 +91,14 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
-prompt_context() {
-    if [[ "$USER" = "$DEFAULT_USER" ]]; then
-        # prompt_segment black default "%(!.%{%F{yellow}%}.)"
-    else
-        prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-    fi
-    prompt_segment blue black  "%*"
-}
+# prompt_context() {
+#     if [[ "$USER" = "$DEFAULT_USER" ]]; then
+#         # prompt_segment black default "%(!.%{%F{yellow}%}.)"
+#     else
+#         prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+#     fi
+#     prompt_segment blue black  "%*"
+# }
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[1~"   beginning-of-line
 bindkey  "^[[F"   end-of-line
