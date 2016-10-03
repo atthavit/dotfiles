@@ -1,0 +1,5 @@
+alias ls='ls -F --color'
+alias ll='ls -lh --group-directories-first --color'
+
+# http://moviethumbnail.sourceforge.net/
+alias mtn='/opt/mtn-200808a-linux/mtn -f /opt/mtn-200808a-linux/LiberationMono-Bold.ttf -c 4 -r 6 -w 1280 -s 320'
