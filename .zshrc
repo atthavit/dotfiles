@@ -106,3 +106,5 @@ bindkey  "^[[F"   end-of-line
 bindkey  "^[[4~"   end-of-line
 
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
+
+setopt No_histverify
