@@ -108,3 +108,7 @@ bindkey  "^[[4~"   end-of-line
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 
 setopt No_histverify
+
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
+fi
