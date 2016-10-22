@@ -1,4 +1,5 @@
-alias ls='ls -F --color'
+alias l='ls -F --color'
+alias ls='ls --color'
 alias ll='\ls -lh --group-directories-first --color'
 
 # http://moviethumbnail.sourceforge.net/
