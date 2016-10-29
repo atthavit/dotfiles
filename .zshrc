@@ -104,6 +104,7 @@ bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[1~"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[4~"   end-of-line
+bindkey '^R' history-incremental-search-backward
 
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 
