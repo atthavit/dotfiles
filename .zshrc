@@ -112,3 +112,5 @@ setopt No_histverify
 if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
+
+set -o vi
