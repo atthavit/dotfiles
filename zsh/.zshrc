@@ -80,6 +80,8 @@ source $ZSH/oh-my-zsh.sh
 # fi
 export EDITOR='vim'
 
+export QUOTING_STYLE='literal'
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
