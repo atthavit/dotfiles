@@ -1,3 +1,12 @@
+```
+cd ~
+git clone https://gitlab.com/nocchio/dotfiles.git
+cd dotfiles
+stow vim
+stow tmux
+...
+```
+
 vim
 =====
 * install vim-plug (https://github.com/junegunn/vim-plug)  
