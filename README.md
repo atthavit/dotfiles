@@ -1,8 +1,3 @@
-    stow vim
-    stow tmux
-    stow powerline
-    stow zsh
-
 vim
 =====
 * install vim-plug (https://github.com/junegunn/vim-plug)  
