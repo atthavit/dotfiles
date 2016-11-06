@@ -37,3 +37,10 @@ zsh
 
         git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
+
+ctags
+=====
+
+    ctags -R --tag-relative=yes -o .git/tags .
+
+
