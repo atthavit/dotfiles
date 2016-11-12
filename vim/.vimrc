@@ -1,9 +1,9 @@
 call plug#begin('~/.vim/plugged')
-" Plug 'https://github.com/powerline/powerline.git'
-" Plug 'https://github.com/scrooloose/nerdtree.git'
-Plug 'https://github.com/vim-airline/vim-airline.git'
-Plug 'https://github.com/vim-airline/vim-airline-themes.git'
-Plug 'https://github.com/kien/ctrlp.vim.git'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'kien/ctrlp.vim'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-fugitive'
 
 " Themes
 " Plug 'https://github.com/sickill/vim-monokai.git'
