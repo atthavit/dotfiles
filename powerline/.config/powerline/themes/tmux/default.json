@@ -5,12 +5,6 @@
 				"function": "powerline.segments.common.bat.battery"
 			},
 			{
-				"function": "powerline.segments.common.wthr.weather",
-                "args": {
-                    "location": "bangkok, thailand"
-                }
-			},
-			{
 				"function": "powerline.segments.common.sys.uptime"
 			},
 			{
@@ -30,10 +24,6 @@
 			},
 			{
 				"function": "powerline.segments.common.net.external_ip",
-				"priority": 50
-			},
-			{
-				"function": "powerline.segments.common.net.hostname",
 				"priority": 50
 			}
 		]
