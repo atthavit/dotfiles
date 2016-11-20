@@ -119,5 +119,3 @@ setopt No_histverify
 if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
-export HISTFILESIZE=
-export HISTSIZE=
