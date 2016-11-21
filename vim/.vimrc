@@ -3,6 +3,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
 Plug 'godlygeek/tabular'
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
 
 " Themes
@@ -66,3 +67,6 @@ let g:airline_theme='powerlineish'
 " for GUI
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set mouse=c
+
+" vim-table-mode
+let g:table_mode_corner="|" " markdown-compatible
