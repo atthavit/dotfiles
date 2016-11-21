@@ -63,3 +63,6 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 
+" for GUI
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+set mouse=c
