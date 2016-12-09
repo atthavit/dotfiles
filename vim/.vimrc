@@ -47,6 +47,7 @@ set splitbelow
 set backspace=2
 set encoding=utf-8
 set tags=./tags;,tags;,.git/tags; " find tags file in file dir, parent dirs and .git dir
+set smartcase
 
 " Disable arrow keys for practicing
 noremap <up> <nop>
