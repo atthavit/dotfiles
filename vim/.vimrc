@@ -5,6 +5,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
+Plug 'chase/vim-ansible-yaml'
 
 " Themes
 " Plug 'https://github.com/sickill/vim-monokai.git'
@@ -48,6 +49,7 @@ set backspace=2
 set encoding=utf-8
 set tags=./tags;,tags;,.git/tags; " find tags file in file dir, parent dirs and .git dir
 set smartcase
+set ignorecase " required by smartcase
 
 " Disable arrow keys for practicing
 noremap <up> <nop>
