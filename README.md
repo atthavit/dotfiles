@@ -21,7 +21,7 @@ vim
 
         :PlugInstall
 
-tmux
+tmux-desktop
 =====
 *  powerline  
 
