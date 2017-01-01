@@ -4,6 +4,7 @@ git clone https://gitlab.com/nocchio/dotfiles.git
 cd dotfiles
 stow vim
 stow tmux
+stow .aliases
 ...
 ```
 
