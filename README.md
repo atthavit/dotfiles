@@ -21,7 +21,7 @@ vim-pc
 
         :PlugInstall
 
-* install flake8 (syntax checking)
+* install flake8 (syntax checking for python)
 
         pip install flake8
 
