@@ -4,11 +4,11 @@ git clone https://gitlab.com/nocchio/dotfiles.git
 cd dotfiles
 stow vim
 stow tmux
-stow .aliases
+stow aliases
 ...
 ```
 
-vim
+vim-pc
 =====
 * install vim-plug (https://github.com/junegunn/vim-plug)  
 
@@ -21,7 +21,12 @@ vim
 
         :PlugInstall
 
-tmux-desktop
+* install flake8 (syntax checking)
+
+        pip install flake8
+
+
+tmux-pc
 =====
 *  powerline  
 
