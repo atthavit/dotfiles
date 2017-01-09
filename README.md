@@ -28,7 +28,8 @@ vim-pc
 
 tmux-pc
 =====
-*  powerline  
+* install tmux 2.2
+* powerline  
 
         pip install --user powerline-status
 
