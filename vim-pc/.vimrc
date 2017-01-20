@@ -57,6 +57,8 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
+cmap w!! w !sudo tee %
+
 " GUI
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set mouse=c
