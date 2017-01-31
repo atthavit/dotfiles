@@ -5,6 +5,8 @@ cd dotfiles
 stow vim
 stow tmux
 stow aliases
+mkdir ~/.config
+stow powerline
 ...
 ```
 
