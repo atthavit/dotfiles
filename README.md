@@ -12,6 +12,7 @@ stow powerline
 
 vim-pc
 =====
+** Vim 8 required (ALE)**
 * install vim-plug (https://github.com/junegunn/vim-plug)  
 
         curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

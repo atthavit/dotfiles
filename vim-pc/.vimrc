@@ -6,7 +6,7 @@ Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
 Plug 'chase/vim-ansible-yaml'
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 
 " Themes
 " Plug 'https://github.com/sickill/vim-monokai.git'
@@ -63,6 +63,12 @@ cmap w!! w !sudo tee %
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set mouse=c
 
+" ALE
+filetype off
+let &runtimepath.=',~/.vim/bundle/ale'
+filetype plugin on
+let g:ale_python_flake8_args = '--ignore=E128,E265,E501'
+
 " vim-airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
@@ -70,14 +76,3 @@ let g:airline_theme='powerlineish'
 
 " vim-table-mode
 let g:table_mode_corner="|" " markdown-compatible
-
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--ignore=E128,E501'
-let g:syntastic_loc_list_height=3
