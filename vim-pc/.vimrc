@@ -9,12 +9,7 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'w0rp/ale'
 
 " Themes
-" Plug 'https://github.com/sickill/vim-monokai.git'
-" Plug 'https://github.com/tomasr/molokai'
-" Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
-" Plug 'https://github.com/sjl/badwolf.git'
-" Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 
 set nocompatible
@@ -75,6 +70,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
 
 " vim-table-mode
 let g:table_mode_corner="|" " markdown-compatible
