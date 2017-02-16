@@ -12,7 +12,11 @@ stow powerline
 
 vim-pc
 =====
-** Vim 8 required (ALE)**
+* **ALE requires Vim 8**
+* compile vim with options:
+
+        ./configure --enable-gui=yes --with-features=huge --enable-python3interp --enable-pythoninterp
+
 * install vim-plug (https://github.com/junegunn/vim-plug)  
 
         curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

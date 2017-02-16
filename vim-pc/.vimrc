@@ -7,8 +7,10 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
 Plug 'chase/vim-ansible-yaml'
 Plug 'w0rp/ale'
+Plug 'mattn/emmet-vim'
+Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
 
-" Themes
+" Theme
 Plug 'https://github.com/morhetz/gruvbox.git'
 call plug#end()
 
@@ -40,7 +42,9 @@ set backspace=2
 set encoding=utf-8
 set tags=./tags;,tags;,.git/tags; " find tags file in file dir, parent dirs and .git dir
 set smartcase
-set ignorecase " required by smartcase
+set ignorecase
+set wildmenu
+set wildmode=list:longest,full
 
 " Disable arrow keys for practicing
 noremap <up> <nop>
@@ -53,6 +57,9 @@ imap <left> <nop>
 imap <right> <nop>
 
 cmap w!! w !sudo tee %
+
+" Jump between html tags
+runtime macros/matchit.vim
 
 " GUI
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
@@ -75,3 +82,12 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 
 " vim-table-mode
 let g:table_mode_corner="|" " markdown-compatible
+
+" MatchTagAlways
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \ 'htmldjango' : 1,
+    \}
