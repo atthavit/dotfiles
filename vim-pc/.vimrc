@@ -9,6 +9,7 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'w0rp/ale'
 Plug 'mattn/emmet-vim'
 Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
+Plug 'tpope/vim-unimpaired'
 
 " Theme
 Plug 'https://github.com/morhetz/gruvbox.git'
