@@ -10,6 +10,8 @@ Plug 'w0rp/ale'
 Plug 'mattn/emmet-vim'
 Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
 Plug 'tpope/vim-unimpaired'
+Plug 'posva/vim-vue'
+Plug 'davidhalter/jedi-vim'
 
 " Theme
 Plug 'https://github.com/morhetz/gruvbox.git'
