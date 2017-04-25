@@ -11,8 +11,8 @@ stow powerline
 ```
 
 vim-pc
-=====
-* **ALE requires Vim 8**
+======
+* ALE requires **Vim 8**
 * compile vim with options:
 
         ./configure --enable-gui=yes --with-features=huge --enable-python3interp --enable-pythoninterp
@@ -34,15 +34,15 @@ vim-pc
 
 
 tmux-pc
-=====
-* install tmux 2.2
+=======
+* install tmux 2.3
 * powerline  
 
         pip install --user powerline-status
 
 
 zsh
-=====
+===
 * install oh-my-zsh (https://github.com/robbyrussell/oh-my-zsh)  
 
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
