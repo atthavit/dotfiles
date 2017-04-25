@@ -72,40 +72,10 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 export EDITOR='vim'
 
 export QUOTING_STYLE='literal'
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-
-# prompt_context() {
-#     if [[ "$USER" = "$DEFAULT_USER" ]]; then
-#         # prompt_segment black default "%(!.%{%F{yellow}%}.)"
-#     else
-#         prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-#     fi
-#     prompt_segment blue black  "%*"
-# }
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[1~"   beginning-of-line
 bindkey  "^[[F"   end-of-line
@@ -131,3 +101,5 @@ if [ -f "${HOME}/.gpg-agent-info" ]; then
   export GPG_AGENT_INFO
   export SSH_AUTH_SOCK
 fi
+
+export PATH=~/.npm-global/bin:$PATH
