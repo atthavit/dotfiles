@@ -48,8 +48,10 @@ set smartcase
 set ignorecase
 set wildmenu
 set wildmode=list:longest,full
+filetype plugin on
+" .js 2 spaces
+autocmd FileType javascript setlocal sw=2 ts=2 sts=2
 
-" Disable arrow keys for practicing
 noremap <up> <nop>
 noremap <down> <nop>
 noremap <left> <nop>
