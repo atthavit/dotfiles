@@ -21,12 +21,12 @@ set nocompatible
 syntax enable
 set t_Co=256
 set term=xterm-256color
-"let g:solarized_termcolors=256
 
 set background=dark
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
-set t_ut= "background issue in tmux (https://github.com/morhetz/gruvbox/issues/81)
+" background issue in tmux (https://github.com/morhetz/gruvbox/issues/81)
+set t_ut=
 
 set nu
 set relativenumber
@@ -43,14 +43,17 @@ set splitright
 set splitbelow
 set backspace=2
 set encoding=utf-8
-set tags=./tags;,tags;,.git/tags; " find tags file in file dir, parent dirs and .git dir
+set tags=./tags;,tags;,.git/tags;  " find tags file in file dir, parent dirs and .git dir
 set smartcase
 set ignorecase
 set wildmenu
 set wildmode=list:longest,full
+
 filetype plugin on
-" .js 2 spaces
+" 2 spaces on js, html, vue
+autocmd FileType html setlocal sw=2 ts=2 sts=2
 autocmd FileType javascript setlocal sw=2 ts=2 sts=2
+autocmd FileType vue setlocal sw=2 ts=2 sts=2
 
 noremap <up> <nop>
 noremap <down> <nop>
