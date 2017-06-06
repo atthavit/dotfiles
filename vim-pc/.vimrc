@@ -12,6 +12,7 @@ Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
 Plug 'tpope/vim-unimpaired'
 Plug 'posva/vim-vue'
 Plug 'davidhalter/jedi-vim'
+Plug 'majutsushi/tagbar'
 
 " Theme
 Plug 'https://github.com/morhetz/gruvbox.git'
@@ -86,6 +87,7 @@ set laststatus=2
 let g:airline_theme='powerlineish'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tagbar#enabled = 1
 
 " vim-table-mode
 let g:table_mode_corner="|" " markdown-compatible
