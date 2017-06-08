@@ -74,6 +74,13 @@ runtime macros/matchit.vim
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set mouse=c
 
+" ctrlp
+let g:ctrlp_max_files=0
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.git|node_modules)$',
+  \ 'file': '\v\.(pyc)$',
+  \ }
+
 " ALE
 filetype off
 let &runtimepath.=',~/.vim/bundle/ale'
