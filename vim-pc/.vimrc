@@ -13,6 +13,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'posva/vim-vue'
 Plug 'davidhalter/jedi-vim'
 Plug 'majutsushi/tagbar'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-commentary'
 
 " Theme
 Plug 'https://github.com/morhetz/gruvbox.git'
@@ -80,6 +82,8 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.git|node_modules)$',
   \ 'file': '\v\.(pyc)$',
   \ }
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_working_path_mode = 0
 
 " ALE
 filetype off
@@ -107,3 +111,6 @@ let g:mta_filetypes = {
     \ 'jinja' : 1,
     \ 'htmldjango' : 1,
     \}
+
+" vim-gitgutter
+set updatetime=250
