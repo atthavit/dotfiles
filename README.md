@@ -7,6 +7,7 @@ stow tmux
 stow aliases
 mkdir ~/.config
 stow powerline
+stow yapf
 ...
 ```
 
