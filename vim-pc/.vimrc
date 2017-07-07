@@ -18,6 +18,7 @@ Plug 'tpope/vim-commentary'
 Plug 'fisadev/vim-isort'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'johngrib/vim-game-code-break'
+Plug 'Chiel92/vim-autoformat'
 
 " Theme
 Plug 'https://github.com/morhetz/gruvbox.git'
@@ -123,3 +124,7 @@ let g:indent_guides_guide_size = 1
 
 " jedi-vim
 let g:jedi#force_py_version=3
+
+" vim-autoformat
+noremap <F3> :Autoformat<CR>
+let g:formatdef_yapf = "'yapf -l '.a:firstline.'-'.a:lastline"  " to use yapf settings from config file
