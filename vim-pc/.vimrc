@@ -16,6 +16,8 @@ Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'fisadev/vim-isort'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'johngrib/vim-game-code-break'
 
 " Theme
 Plug 'https://github.com/morhetz/gruvbox.git'
@@ -110,10 +112,14 @@ let g:mta_filetypes = {
     \ 'xml' : 1,
     \ 'jinja' : 1,
     \ 'htmldjango' : 1,
+    \ 'vue' : 1,
     \}
 
 " vim-gitgutter
 set updatetime=250
+
+" vim-indent-guides
+let g:indent_guides_guide_size = 1
 
 " jedi-vim
 let g:jedi#force_py_version=3
