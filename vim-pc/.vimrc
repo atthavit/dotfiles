@@ -15,6 +15,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
+Plug 'fisadev/vim-isort'
 
 " Theme
 Plug 'https://github.com/morhetz/gruvbox.git'
