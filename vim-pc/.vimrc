@@ -89,7 +89,6 @@ let g:ctrlp_working_path_mode = 0
 filetype off
 let &runtimepath.=',~/.vim/bundle/ale'
 filetype plugin on
-let g:ale_python_flake8_args = '--ignore=E123,E128,E226,E265,E501'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
