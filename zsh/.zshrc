@@ -104,3 +104,8 @@ if [ -f "${HOME}/.gpg-agent-info" ]; then
 fi
 
 export PATH=~/.npm-global/bin:$PATH
+
+VENVWRAPPER=~/.local/bin/virtualenvwrapper.sh
+if [ -f $VENVWRAPPER ]; then
+    source $VENVWRAPPER
+fi
