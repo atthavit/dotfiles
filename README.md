@@ -16,7 +16,7 @@ vim-pc
 * ALE requires **Vim 8**
 * compile vim with options:
 
-        ./configure --enable-gui=yes --with-features=huge --enable-python3interp --enable-pythoninterp
+        ./configure --enable-gui=yes --with-features=huge --enable-python3interp
 
 * install vim-plug (https://github.com/junegunn/vim-plug)  
 

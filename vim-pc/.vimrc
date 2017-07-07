@@ -114,3 +114,6 @@ let g:mta_filetypes = {
 
 " vim-gitgutter
 set updatetime=250
+
+" jedi-vim
+let g:jedi#force_py_version=3
