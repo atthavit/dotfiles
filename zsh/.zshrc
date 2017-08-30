@@ -50,3 +50,6 @@ VENVWRAPPER=~/.local/bin/virtualenvwrapper.sh
 if [ -f $VENVWRAPPER ]; then
     source $VENVWRAPPER
 fi
+
+# autojump (https://github.com/wting/autojump)
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh

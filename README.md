@@ -52,6 +52,11 @@ zsh
 
         git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
+* install autojump (https://github.com/wting/autojump)
+
+        git clone https://github.com/wting/autojump.git
+        cd autojump && ./install.py
+
 
 ctags
 =====
