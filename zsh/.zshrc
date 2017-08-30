@@ -11,7 +11,7 @@ DEFAULT_USER=$USER
 # case-sensitive completion.
 CASE_SENSITIVE="true"
 
-plugins=(git gpg-agent)
+plugins=(git)
 
 # User configuration
 
@@ -42,6 +42,16 @@ setopt No_histverify
 
 if [ -f ~/.aliases ]; then
     source ~/.aliases
+fi
+
+# tested on gpg 2.0.22 (CentOS 7) and 2.1.11 (Ubuntu 16.04.2)
+export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    gpg-agent --daemon > /dev/null 2>&1
+fi
+if [ -e "${HOME}/.gnupg/S.gpg-agent.ssh" ]; then
+    export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
 fi
 
 export PATH=~/.npm-global/bin:$PATH

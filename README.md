@@ -6,6 +6,7 @@ stow vim
 stow tmux
 stow aliases
 mkdir ~/.config
+mkdir ~/.gnupg && stow gpg
 stow powerline
 stow yapf
 ...
@@ -64,3 +65,13 @@ ctags
     ctags -R --tag-relative=yes -o .git/tags .
 
 
+gpg
+===
+
+CentOS 7
+
+        yum install gnupg2 pinentry pinentry-qt4 gnupg2-smime pcsc-lite pcsc-lite-ccid
+
+Ubuntu 16.04
+
+        apt-get install gnupg2 pcscd scdaemon pinentry-qt
