@@ -13,12 +13,16 @@ Plug 'tpope/vim-unimpaired'
 Plug 'posva/vim-vue'
 Plug 'davidhalter/jedi-vim'
 Plug 'majutsushi/tagbar'
+Plug 'ap/vim-css-color'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
-Plug 'fisadev/vim-isort'
+Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'johngrib/vim-game-code-break'
 Plug 'Chiel92/vim-autoformat'
+Plug 'fisadev/vim-isort'
+Plug 'maralla/completor.vim'  " autocompletion
+Plug 'wincent/ferret'  " file search
 
 " Theme
 Plug 'https://github.com/morhetz/gruvbox.git'
@@ -55,9 +59,13 @@ set smartcase
 set ignorecase
 set wildmenu
 set wildmode=list:longest,full
+set nofoldenable
+" auto-reload
+set autoread
+au FocusGained,BufEnter * checktime
+au CursorHold,CursorHoldI * checktime
 
 filetype plugin on
-" 2 spaces on js, html, vue
 autocmd FileType html setlocal sw=2 ts=2 sts=2
 autocmd FileType javascript setlocal sw=2 ts=2 sts=2
 autocmd FileType vue setlocal sw=2 ts=2 sts=2
@@ -96,6 +104,9 @@ let &runtimepath.=',~/.vim/bundle/ale'
 filetype plugin on
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_fixers = {
+    \ 'python': ['yapf'],
+    \}
 
 " vim-airline
 set laststatus=2
@@ -103,6 +114,7 @@ let g:airline_theme='powerlineish'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 0
 
 " vim-table-mode
 let g:table_mode_corner="|" " markdown-compatible
@@ -124,8 +136,24 @@ set updatetime=250
 let g:indent_guides_guide_size = 1
 
 " jedi-vim
-let g:jedi#force_py_version=3
+let g:jedi#force_py_version = 3
 
 " vim-autoformat
 noremap <F3> :Autoformat<CR>
 let g:formatdef_yapf = "'yapf -l '.a:firstline.'-'.a:lastline"  " to use yapf settings from config file
+
+" vim-isort
+let g:vim_isort_python_version = 'python3'
+
+" jedi-vim
+let g:jedi#completions_enabled = 0  " use completor.vim instead
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#force_py_version = 3
+
+" completor.vim
+let g:completor_python_binary = 'python3'
+
+function! RemoveTrailingSpaces(...)
+    %s/\s*$//
+    ''
+endfunction

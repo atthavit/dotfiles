@@ -8,16 +8,20 @@ stow aliases
 mkdir ~/.config
 mkdir ~/.gnupg && stow gpg
 stow powerline
-stow yapf
+stow flake8
 ...
 ```
 
 vim-pc
 ======
 * ALE requires **Vim 8**
-* compile vim with options:
+* compile vim from source
 
-        ./configure --enable-gui=yes --with-features=huge --enable-python3interp
+        ./configure --enable-gui=yes --with-features=huge --enable-python3interp --with-x --enable-gui
+
+* `grep X11 src/auto/config.h` should see `#define HAVE_X11 1`
+
+* `make && sudo make install`
 
 * install vim-plug (https://github.com/junegunn/vim-plug)  
 
@@ -30,9 +34,11 @@ vim-pc
 
         :PlugInstall
 
-* install flake8 (syntax checking for python)
+* install flake8, jedi
 
-        pip install flake8
+        python3 -m pip install flake8 jedi
+
+* install [ag](https://github.com/ggreer/the_silver_searcher)
 
 
 tmux-pc
