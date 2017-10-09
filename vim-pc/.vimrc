@@ -103,7 +103,7 @@ nnoremap <C-n> :CtrlPTag<CR>
 let g:ctrlp_max_files=0
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.git|node_modules)$',
-  \ 'file': '\v\.(pyc)$',
+  \ 'file': '\v\.(pyc|swp)$',
   \ }
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = 0
