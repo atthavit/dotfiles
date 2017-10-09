@@ -21,8 +21,9 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'johngrib/vim-game-code-break'
 Plug 'Chiel92/vim-autoformat'
 Plug 'fisadev/vim-isort'
-Plug 'maralla/completor.vim'  " autocompletion
+Plug 'maralla/completor.vim', {'for': 'python'}  " autocompletion
 Plug 'wincent/ferret'  " file search
+Plug 'fatih/vim-go'
 
 " Theme
 Plug 'https://github.com/morhetz/gruvbox.git'
@@ -70,6 +71,7 @@ autocmd FileType html setlocal sw=2 ts=2 sts=2
 autocmd FileType javascript setlocal sw=2 ts=2 sts=2
 autocmd FileType vue setlocal sw=2 ts=2 sts=2
 autocmd FileType yaml setlocal sw=2 ts=2 sts=2
+autocmd FileType go setlocal noet ts=4 sw=4 sts =4
 
 noremap <up> <nop>
 noremap <down> <nop>
@@ -82,6 +84,13 @@ imap <right> <nop>
 
 cmap w!! w !sudo tee %
 
+" from https://stackoverflow.com/questions/510503/ctrlspace-for-omni-and-keyword-completion-in-vim
+inoremap <expr> <C-n> pumvisible() \|\| &omnifunc == '' ?
+    \ "\<lt>C-n>" :
+    \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+    \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+    \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+
 " Jump between html tags
 runtime macros/matchit.vim
 
@@ -90,6 +99,7 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set mouse=c
 
 " ctrlp
+nnoremap <C-n> :CtrlPTag<CR>
 let g:ctrlp_max_files=0
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.git|node_modules)$',
@@ -97,6 +107,8 @@ let g:ctrlp_custom_ignore = {
   \ }
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_extensions = ['tag']
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:30'
 
 " ALE
 filetype off
@@ -152,6 +164,9 @@ let g:jedi#force_py_version = 3
 
 " completor.vim
 let g:completor_python_binary = 'python3'
+
+" vim-go
+let g:go_fmt_command = 'goimports'
 
 function! RemoveTrailingSpaces(...)
     %s/\s*$//

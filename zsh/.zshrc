@@ -22,7 +22,7 @@ plugins=(docker-compose kubectl colored-man-pages web-search)
 # export MANPATH="/usr/local/man:$MANPATH"
 #
 if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+    PATH="$HOME/go/bin:$HOME/.local/bin:/usr/local/go/bin:$PATH"
 fi
 
 source $ZSH/oh-my-zsh.sh
