@@ -17,10 +17,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'tmhedberg/SimpylFold'
+Plug 'Konfekt/FastFold'
 Plug 'johngrib/vim-game-code-break'
 Plug 'Chiel92/vim-autoformat'
 Plug 'fisadev/vim-isort'
 Plug 'maralla/completor.vim', {'for': 'python'}  " autocompletion
+Plug 'sjl/gundo.vim'
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --key-bindings --completion --no-update-rc'}
 Plug 'junegunn/fzf.vim'
@@ -185,6 +188,10 @@ let g:jedi#force_py_version = 3
 
 " completor.vim
 let g:completor_python_binary = 'python3'
+
+" gundo.vim
+nnoremap <F6> :GundoToggle<CR>
+let g:gundo_prefer_python3 = 1
 
 function! RemoveTrailingSpaces(...)
     %s/\s*$//
