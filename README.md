@@ -11,6 +11,17 @@ stow powerline
 stow flake8
 ...
 ```
+fzf
+===
+
+* install [ag](https://github.com/ggreer/the_silver_searcher)
+
+* install fzf
+
+        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+        cd ~/.fzf
+        ./install --key-bindings --completion --no-update-rc
+
 
 vim-pc
 ======
@@ -37,8 +48,6 @@ vim-pc
 * install flake8, jedi
 
         python3 -m pip install flake8 jedi
-
-* install [ag](https://github.com/ggreer/the_silver_searcher)
 
 
 tmux-pc

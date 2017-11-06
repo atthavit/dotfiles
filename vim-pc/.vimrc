@@ -1,7 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
@@ -22,8 +21,9 @@ Plug 'johngrib/vim-game-code-break'
 Plug 'Chiel92/vim-autoformat'
 Plug 'fisadev/vim-isort'
 Plug 'maralla/completor.vim', {'for': 'python'}  " autocompletion
-Plug 'wincent/ferret'  " file search
 Plug 'fatih/vim-go'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --key-bindings --completion --no-update-rc'}
+Plug 'junegunn/fzf.vim'
 
 " Theme
 Plug 'https://github.com/morhetz/gruvbox.git'
@@ -100,17 +100,36 @@ runtime macros/matchit.vim
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set mouse=c
 
-" ctrlp
-nnoremap <C-n> :CtrlPTag<CR>
-let g:ctrlp_max_files=0
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.git|node_modules)$',
-  \ 'file': '\v\.(pyc|swp|swo)$',
-  \ }
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_extensions = ['tag']
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:30'
+" fzf
+nnoremap <C-p> :Files<CR>
+nnoremap <C-n> :Tags<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>l :Lines<CR>
+nnoremap <Leader>c :Commits!<CR>
+nnoremap <Leader>m :Maps<CR>
+let g:fzf_layout = { 'down': '~30%' }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+let g:fzf_commits_log_options = '--graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Ag! - Start fzf in fullscreen with preview window
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('right:50%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
 
 " ALE
 filetype off
