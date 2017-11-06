@@ -7,4 +7,5 @@
 --exclude=*.html
 --exclude=*.css
 --exclude=*.json
+--exclude=*.js
 --exclude=node_modules

@@ -83,6 +83,8 @@ imap <left> <nop>
 imap <right> <nop>
 
 cmap w!! w !sudo tee %
+nnoremap <Leader>w :update<CR>
+nnoremap <Leader>q :q<CR>
 
 " from https://stackoverflow.com/questions/510503/ctrlspace-for-omni-and-keyword-completion-in-vim
 inoremap <expr> <C-n> pumvisible() \|\| &omnifunc == '' ?
@@ -103,7 +105,7 @@ nnoremap <C-n> :CtrlPTag<CR>
 let g:ctrlp_max_files=0
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.git|node_modules)$',
-  \ 'file': '\v\.(pyc|swp)$',
+  \ 'file': '\v\.(pyc|swp|swo)$',
   \ }
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = 0
@@ -164,9 +166,6 @@ let g:jedi#force_py_version = 3
 
 " completor.vim
 let g:completor_python_binary = 'python3'
-
-" vim-go
-let g:go_fmt_command = 'goimports'
 
 function! RemoveTrailingSpaces(...)
     %s/\s*$//
