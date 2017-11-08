@@ -11,7 +11,7 @@ Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
 Plug 'tpope/vim-unimpaired'
 Plug 'posva/vim-vue'
 Plug 'davidhalter/jedi-vim'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'ap/vim-css-color'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
@@ -19,14 +19,15 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tmhedberg/SimpylFold'
 Plug 'Konfekt/FastFold'
-Plug 'johngrib/vim-game-code-break'
+Plug 'johngrib/vim-game-code-break', { 'on': 'VimGameCodeBreak' }
 Plug 'Chiel92/vim-autoformat'
 Plug 'fisadev/vim-isort'
 Plug 'maralla/completor.vim', {'for': 'python'}  " autocompletion
-Plug 'sjl/gundo.vim'
+Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --key-bindings --completion --no-update-rc'}
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo'
 
 " Theme
 Plug 'https://github.com/morhetz/gruvbox.git'
@@ -104,7 +105,7 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set mouse=c
 
 " fzf
-nnoremap <C-p> :Files<CR>
+nnoremap <C-p> :FZF<CR>
 nnoremap <C-n> :Tags<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>l :Lines<CR>
@@ -192,6 +193,9 @@ let g:completor_python_binary = 'python3'
 " gundo.vim
 nnoremap <F6> :GundoToggle<CR>
 let g:gundo_prefer_python3 = 1
+
+" emmet-vim
+let g:user_emmet_leader_key='<Leader><Leader>'
 
 function! RemoveTrailingSpaces(...)
     %s/\s*$//
