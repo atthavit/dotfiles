@@ -20,7 +20,7 @@ fzf
 
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
         cd ~/.fzf
-        ./install --key-bindings --completion --no-update-rc
+        ./install --completion --no-key-bindings --no-update-rc
 
 
 vim-pc
@@ -90,3 +90,10 @@ CentOS 7
 Ubuntu 16.04
 
         apt-get install gnupg2 pcscd scdaemon pinentry-qt
+
+
+npm
+===
+
+    mkdir ~/.npm-global
+    npm config set prefix ~/.npm-global

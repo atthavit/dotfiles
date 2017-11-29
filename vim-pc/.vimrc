@@ -25,7 +25,7 @@ Plug 'fisadev/vim-isort'
 Plug 'maralla/completor.vim', {'for': 'python'}  " autocompletion
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'fatih/vim-go'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --key-bindings --completion --no-update-rc'}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --completion --no-key-bindings --no-update-rc'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 
