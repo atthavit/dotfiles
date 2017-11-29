@@ -21,9 +21,9 @@ plugins=(docker-compose kubectl colored-man-pages web-search)
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 #
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/go/bin:$HOME/.local/bin:/usr/local/go/bin:$PATH"
-fi
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
+export PATH="$HOME/go/bin:/usr/local/go/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -56,8 +56,6 @@ fi
 if [ -e "${HOME}/.gnupg/S.gpg-agent.ssh" ]; then
     export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
 fi
-
-export PATH=~/.npm-global/bin:$PATH
 
 VENVWRAPPER=~/.local/bin/virtualenvwrapper.sh
 if [ -f $VENVWRAPPER ]; then

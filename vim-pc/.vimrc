@@ -30,7 +30,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 
 " Theme
-Plug 'https://github.com/morhetz/gruvbox.git'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 set nocompatible
@@ -89,6 +89,8 @@ imap <right> <nop>
 cmap w!! w !sudo tee %
 nnoremap <Leader>w :update<CR>
 nnoremap <Leader>q :q<CR>
+vnoremap <leader>e64 c<c-r>=substitute(system('base64 --wrap=0', @"), '\n$', '', 'g')<esc>
+vnoremap <leader>d64 c<c-r>=substitute(system('base64 --decode --wrap=0', @"), '\n$', '', 'g')<esc>
 
 " from https://stackoverflow.com/questions/510503/ctrlspace-for-omni-and-keyword-completion-in-vim
 inoremap <expr> <C-n> pumvisible() \|\| &omnifunc == '' ?
@@ -196,6 +198,9 @@ let g:gundo_prefer_python3 = 1
 
 " emmet-vim
 let g:user_emmet_leader_key='<Leader><Leader>'
+
+" tagbar
+noremap <Leader>t :TagbarToggle<CR>
 
 function! RemoveTrailingSpaces(...)
     %s/\s*$//
