@@ -16,11 +16,6 @@ CASE_SENSITIVE="true"
 
 plugins=(docker-compose kubectl colored-man-pages web-search)
 
-# User configuration
-
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
-#
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.npm-global/bin:$PATH"
 export PATH="$HOME/go/bin:/usr/local/go/bin:$PATH"

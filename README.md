@@ -45,9 +45,9 @@ vim-pc
 
         :PlugInstall
 
-* install flake8, jedi
+* install flake8, jedi, neovim(required by deoplete)
 
-        python3 -m pip install flake8 jedi
+        python3 -m pip install flake8 jedi neovim
 
 
 tmux-pc

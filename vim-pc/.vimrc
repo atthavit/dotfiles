@@ -22,12 +22,16 @@ Plug 'Konfekt/FastFold'
 Plug 'johngrib/vim-game-code-break', { 'on': 'VimGameCodeBreak' }
 Plug 'Chiel92/vim-autoformat'
 Plug 'fisadev/vim-isort'
-Plug 'maralla/completor.vim', {'for': 'python'}  " autocompletion
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --completion --no-key-bindings --no-update-rc'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " Theme
 Plug 'morhetz/gruvbox'
@@ -71,11 +75,12 @@ au FocusGained,BufEnter * checktime
 au CursorHold,CursorHoldI * checktime
 
 filetype plugin on
+autocmd FileType go setlocal noet ts=4 sw=4 sts =4
 autocmd FileType html setlocal sw=2 ts=2 sts=2
 autocmd FileType javascript setlocal sw=2 ts=2 sts=2
+autocmd FileType python setlocal omnifunc=jedi#completions
 autocmd FileType vue setlocal sw=2 ts=2 sts=2
 autocmd FileType yaml setlocal sw=2 ts=2 sts=2
-autocmd FileType go setlocal noet ts=4 sw=4 sts =4
 
 noremap <up> <nop>
 noremap <down> <nop>
@@ -185,12 +190,9 @@ let g:formatdef_yapf = "'yapf -l '.a:firstline.'-'.a:lastline"  " to use yapf se
 let g:vim_isort_python_version = 'python3'
 
 " jedi-vim
-let g:jedi#completions_enabled = 0  " use completor.vim instead
+let g:jedi#completions_enabled = 0  " use deoplete-jedi instead
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#force_py_version = 3
-
-" completor.vim
-let g:completor_python_binary = 'python3'
 
 " gundo.vim
 nnoremap <F6> :GundoToggle<CR>
@@ -201,6 +203,12 @@ let g:user_emmet_leader_key='<Leader><Leader>'
 
 " tagbar
 noremap <Leader>t :TagbarToggle<CR>
+
+" vim-go
+let g:go_fmt_command = 'goimports'
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
 
 function! RemoveTrailingSpaces(...)
     %s/\s*$//
