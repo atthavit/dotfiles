@@ -83,7 +83,7 @@ ctags
 gpg
 ===
 
-CentOS 7
+CentOS 7 / Fedora 27
 
         yum install gnupg2 pinentry pinentry-qt4 gnupg2-smime pcsc-lite pcsc-lite-ccid
 

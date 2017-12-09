@@ -49,7 +49,11 @@ if [ $? -ne 0 ]; then
     gpg-agent --daemon > /dev/null 2>&1
 fi
 if [ -e "${HOME}/.gnupg/S.gpg-agent.ssh" ]; then
+    # CentOS 7
     export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+elif [ -e "/run/user/$UID/gnupg/S.gpg-agent.ssh" ]; then
+    # Fedora 27
+    export SSH_AUTH_SOCK=/run/user/$UID/gnupg/S.gpg-agent.ssh
 fi
 
 VENVWRAPPER=~/.local/bin/virtualenvwrapper.sh
