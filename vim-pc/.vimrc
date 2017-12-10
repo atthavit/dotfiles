@@ -97,12 +97,8 @@ nnoremap <Leader>q :q<CR>
 vnoremap <leader>e64 c<c-r>=substitute(system('base64 --wrap=0', @"), '\n$', '', 'g')<esc>
 vnoremap <leader>d64 c<c-r>=substitute(system('base64 --decode --wrap=0', @"), '\n$', '', 'g')<esc>
 
-" from https://stackoverflow.com/questions/510503/ctrlspace-for-omni-and-keyword-completion-in-vim
-inoremap <expr> <C-n> pumvisible() \|\| &omnifunc == '' ?
-    \ "\<lt>C-n>" :
-    \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
-    \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-    \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+" see https://github.com/Shougo/deoplete.nvim/issues/83
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<cr>")
 
 " Jump between html tags
 runtime macros/matchit.vim
