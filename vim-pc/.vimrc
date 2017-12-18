@@ -69,6 +69,8 @@ set ignorecase
 set wildmenu
 set wildmode=list:longest,full
 set nofoldenable
+set timeoutlen=500
+
 " auto-reload
 set autoread
 au FocusGained,BufEnter * checktime
