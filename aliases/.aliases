@@ -16,3 +16,6 @@ alias mtn='/opt/mtn-200808a-linux/mtn -f /opt/mtn-200808a-linux/LiberationMono-B
 
 alias datetoday='date +"%Y%m%d"'
 alias datenow='date +"%Y%m%d%H%M"'
+
+# https://github.com/kubernetes/kubernetes/issues/17512#issuecomment-317757388
+alias kresources='kubectl get nodes --no-headers | awk '\''{print $1}'\'' | xargs -I {} sh -c '\''echo {} ; kubectl describe node {} | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '\'''
