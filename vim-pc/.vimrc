@@ -94,6 +94,8 @@ imap <left> <nop>
 imap <right> <nop>
 
 cmap w!! w !sudo tee %
+" get the dir of current buffer in command mode
+cnoremap <Leader>d <C-R>=expand("%:p:h")."/"<CR>
 nnoremap <Leader>w :update<CR>
 nnoremap <Leader>q :q<CR>
 vnoremap <leader>e64 c<c-r>=substitute(system('base64 --wrap=0', @"), '\n$', '', 'g')<esc>
