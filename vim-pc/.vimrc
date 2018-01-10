@@ -206,6 +206,7 @@ noremap <Leader>t :TagbarToggle<CR>
 
 " vim-go
 let g:go_fmt_command = 'goimports'
+let g:go_def_mapping_enabled = 0
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
