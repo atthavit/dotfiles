@@ -96,6 +96,7 @@ imap <right> <nop>
 cmap w!! w !sudo tee %
 " get the dir of current buffer in command mode
 cnoremap <Leader>d <C-R>=expand("%:p:h")."/"<CR>
+cnoremap <Leader>m mks! ~/.vim<Left><Left><Left><Left>
 nnoremap <Leader>w :update<CR>
 nnoremap <Leader>q :q<CR>
 vnoremap <leader>e64 c<c-r>=substitute(system('base64 --wrap=0', @"), '\n$', '', 'g')<esc>
