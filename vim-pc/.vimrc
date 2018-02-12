@@ -32,6 +32,7 @@ Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'hashivim/vim-terraform'
 
 " Theme
 Plug 'morhetz/gruvbox'
