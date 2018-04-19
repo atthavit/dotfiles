@@ -16,9 +16,10 @@ CASE_SENSITIVE="true"
 
 plugins=(docker-compose kubectl colored-man-pages web-search)
 
+export GOPATH="$HOME/go"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.npm-global/bin:$PATH"
-export PATH="$HOME/go/bin:/usr/local/go/bin:$PATH"
+export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 

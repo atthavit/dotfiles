@@ -26,9 +26,10 @@ fzf
 vim-pc
 ======
 * ALE requires **Vim 8**
+* More info <https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source>
 * compile vim from source
 
-        ./configure --enable-gui=yes --with-features=huge --enable-python3interp --with-x --enable-gui
+        ./configure --enable-gui --with-features=huge --enable-python3interp --with-x
 
 * `grep X11 src/auto/config.h` should see `#define HAVE_X11 1`
 
