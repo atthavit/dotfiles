@@ -4,7 +4,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 export TERM="xterm-256color"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv context dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(kubecontext command_execution_time status time)
 POWERLEVEL9K_ALWAYS_SHOW_USER="true"
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND="black"
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="yellow"
@@ -14,7 +14,7 @@ DEFAULT_USER=$USER
 # case-sensitive completion.
 CASE_SENSITIVE="true"
 
-plugins=(docker-compose kubectl colored-man-pages web-search)
+plugins=(docker-compose colored-man-pages web-search)
 
 export GOPATH="$HOME/go"
 export PATH="$HOME/.local/bin:$PATH"
