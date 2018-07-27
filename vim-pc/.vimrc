@@ -14,8 +14,6 @@ Plug 'davidhalter/jedi-vim'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'ap/vim-css-color'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-commentary'
-Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tmhedberg/SimpylFold'
 Plug 'Konfekt/FastFold'
@@ -27,13 +25,16 @@ Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --completion --no-key-bindings --no-update-rc'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'zchee/deoplete-jedi'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'hashivim/vim-terraform'
 Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'Shougo/context_filetype.vim'
+Plug 'tyru/caw.vim'
+" Python plugins
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+Plug 'Shougo/deoplete.nvim', { 'for': 'python' }
+Plug 'roxma/nvim-yarp', { 'for': 'python' }
+Plug 'roxma/vim-hug-neovim-rpc', { 'for': 'python' }
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 
 " Theme
 Plug 'morhetz/gruvbox'
