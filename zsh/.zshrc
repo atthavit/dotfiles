@@ -38,6 +38,7 @@ bindkey '^R' history-incremental-search-backward
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 
 setopt No_histverify
+unsetopt autocd
 
 if [ -f ~/.aliases ]; then
     source ~/.aliases
