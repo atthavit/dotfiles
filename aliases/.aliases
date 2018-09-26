@@ -11,9 +11,6 @@ alias ls='ls --color'
 alias mux='tmuxinator'
 alias wo='workon'
 
-# http://moviethumbnail.sourceforge.net/
-alias mtn='/opt/mtn-200808a-linux/mtn -f /opt/mtn-200808a-linux/LiberationMono-Bold.ttf -c 4 -r 12 -w 1500'
-
 alias datetoday='date +"%Y%m%d"'
 alias datenow='date +"%Y%m%d%H%M"'
 

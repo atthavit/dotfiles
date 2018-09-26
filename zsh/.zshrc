@@ -44,7 +44,7 @@ if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
 
-# tested on gpg 2.0.22 (CentOS 7) and 2.1.11 (Ubuntu 16.04.2)
+# tested on gpg 2.0.22 (CentOS 7), 2.1.11 (Ubuntu 16.04.2) and 2.2.4 (Ubuntu 18.04.1)
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye > /dev/null 2>&1
 if [ $? -ne 0 ]; then
@@ -72,5 +72,5 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore node_modules -g "
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"

@@ -23,8 +23,8 @@ fzf
         ./install --completion --no-key-bindings --no-update-rc
 
 
-vim-pc
-======
+vim
+===
 * ALE requires **Vim 8**
 * More info <https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source>
 * compile vim from source
@@ -51,9 +51,8 @@ vim-pc
         python3 -m pip install --user flake8 jedi neovim
 
 
-tmux-pc
-=======
-* install tmux 2.3
+tmux
+====
 * powerline  
 
         pip install --user powerline-status
@@ -88,7 +87,7 @@ CentOS 7 / Fedora 27
 
         yum install gnupg2 pinentry pinentry-qt4 gnupg2-smime pcsc-lite pcsc-lite-ccid
 
-Ubuntu 16.04
+Ubuntu 16.04/18.04
 
         apt-get install gnupg2 pcscd scdaemon pinentry-qt
 
