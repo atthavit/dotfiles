@@ -107,6 +107,8 @@ nnoremap <Leader>w :update<CR>
 nnoremap <Leader>q :q<CR>
 vnoremap <leader>e64 c<c-r>=substitute(system('base64 --wrap=0', @"), '\n$', '', 'g')<esc>
 vnoremap <leader>d64 c<c-r>=substitute(system('base64 --decode --wrap=0', @"), '\n$', '', 'g')<esc>
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <C-x><C-o>
 
 " see https://github.com/Shougo/deoplete.nvim/issues/83
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<cr>")
@@ -214,6 +216,9 @@ noremap <Leader>t :TagbarToggle<CR>
 " vim-go
 let g:go_fmt_command = 'goimports'
 let g:go_def_mapping_enabled = 0
+let g:go_addtags_transform = 'camelcase'
+noremap <Leader>d :GoDeclsDir<CR>
+noremap <Leader>i :GoInfo<CR>
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
