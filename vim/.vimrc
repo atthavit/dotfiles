@@ -23,6 +23,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'fisadev/vim-isort'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'fatih/vim-go'
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --completion --no-key-bindings --no-update-rc'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
@@ -35,6 +36,7 @@ Plug 'Shougo/deoplete.nvim', { 'for': 'python' }
 Plug 'roxma/nvim-yarp', { 'for': 'python' }
 Plug 'roxma/vim-hug-neovim-rpc', { 'for': 'python' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'SirVer/ultisnips'
 
 " Theme
 Plug 'morhetz/gruvbox'
