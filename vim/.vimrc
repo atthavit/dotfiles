@@ -23,20 +23,19 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'fisadev/vim-isort'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'fatih/vim-go'
-Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --completion --no-key-bindings --no-update-rc'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'hashivim/vim-terraform'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'RRethy/vim-illuminate'
+Plug 'SirVer/ultisnips'
 " Python plugins
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'Shougo/deoplete.nvim', { 'for': 'python' }
 Plug 'roxma/nvim-yarp', { 'for': 'python' }
 Plug 'roxma/vim-hug-neovim-rpc', { 'for': 'python' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'SirVer/ultisnips'
 
 " Theme
 Plug 'morhetz/gruvbox'
@@ -215,10 +214,12 @@ noremap <Leader>t :TagbarToggle<CR>
 
 " vim-go
 let g:go_fmt_command = 'goimports'
-let g:go_def_mapping_enabled = 0
 let g:go_addtags_transform = 'camelcase'
-noremap <Leader>d :GoDeclsDir<CR>
-noremap <Leader>i :GoInfo<CR>
+let g:go_auto_type_info = 1
+autocmd Filetype go nmap <Leader>d :GoDeclsDir<CR>
+autocmd Filetype go nmap <Leader>i :GoInfo<CR>
+autocmd Filetype go nmap <leader>t :GoTest -short<cr>
+autocmd Filetype go nmap <leader>cov :GoCoverageToggle<cr>
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
