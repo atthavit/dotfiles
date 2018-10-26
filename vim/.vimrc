@@ -215,7 +215,6 @@ noremap <Leader>t :TagbarToggle<CR>
 " vim-go
 let g:go_fmt_command = 'goimports'
 let g:go_addtags_transform = 'camelcase'
-let g:go_auto_type_info = 1
 autocmd Filetype go nmap <Leader>d :GoDeclsDir<CR>
 autocmd Filetype go nmap <Leader>i :GoInfo<CR>
 autocmd Filetype go nmap <leader>t :GoTest -short<cr>
