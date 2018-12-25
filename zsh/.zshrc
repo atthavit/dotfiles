@@ -129,3 +129,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# terraform
+export TF_CLI_ARGS_plan="-parallelism=100"
+export TF_CLI_ARGS_apply="-parallelism=100"
