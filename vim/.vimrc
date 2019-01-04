@@ -10,7 +10,6 @@ Plug 'mattn/emmet-vim'
 Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
 Plug 'tpope/vim-unimpaired'
 Plug 'posva/vim-vue'
-Plug 'davidhalter/jedi-vim'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'ap/vim-css-color'
 Plug 'airblade/vim-gitgutter'
@@ -31,6 +30,7 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'RRethy/vim-illuminate'
 Plug 'SirVer/ultisnips'
 " Python plugins
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'Shougo/deoplete.nvim', { 'for': 'python' }
 Plug 'roxma/nvim-yarp', { 'for': 'python' }
