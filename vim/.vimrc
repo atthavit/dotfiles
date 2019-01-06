@@ -4,12 +4,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
-Plug 'chase/vim-ansible-yaml'
 Plug 'w0rp/ale'
 Plug 'mattn/emmet-vim'
 Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
 Plug 'tpope/vim-unimpaired'
-Plug 'posva/vim-vue'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'ap/vim-css-color'
 Plug 'airblade/vim-gitgutter'
@@ -19,16 +17,14 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'Konfekt/FastFold'
 Plug 'johngrib/vim-game-code-break', { 'on': 'VimGameCodeBreak' }
 Plug 'Chiel92/vim-autoformat'
-Plug 'fisadev/vim-isort'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --completion --no-key-bindings --no-update-rc'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
-Plug 'hashivim/vim-terraform'
-Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'RRethy/vim-illuminate'
 Plug 'SirVer/ultisnips'
+Plug 'sheerun/vim-polyglot'
 " Python plugins
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
@@ -36,6 +32,7 @@ Plug 'Shougo/deoplete.nvim', { 'for': 'python' }
 Plug 'roxma/nvim-yarp', { 'for': 'python' }
 Plug 'roxma/vim-hug-neovim-rpc', { 'for': 'python' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'fisadev/vim-isort', { 'for': 'python' }
 
 " Theme
 Plug 'morhetz/gruvbox'
@@ -230,3 +227,9 @@ endfunction
 
 " vim-terraform
 let g:terraform_fold_sections=1
+
+" vim-polyglot
+let g:polyglot_disabled = ['markdown', 'go']
+
+" vim-vue in vim-polyglot
+let g:vue_disable_pre_processors=1
