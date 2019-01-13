@@ -1,0 +1,55 @@
+[alias]
+    a = add
+    aa = add -A :/
+    b = branch
+    co = checkout
+    d = diff
+    d1 = diff HEAD^!
+    d21 = diff HEAD~1^!
+    d32 = diff HEAD~2^!
+    ds = diff --staged
+    e = "! "  # execute a shell command in the top level dir
+    exec = "! "
+    f = fetch
+    l = log --graph --pretty=format:'%C(180)%h%Creset -%C(214)%d%Creset %s %C(77)(%cr) %C(75)<%an>%Creset' --abbrev-commit --abbrev=8
+    lo = !git l origin/master
+    p = pull
+    prb = pull --rebase
+    psuh = push
+    rb = rebase
+    s = status
+    s0 = stash show -p stash@{0}
+    s1 = stash show -p stash@{1}
+    sub = submodule
+    subup = submodule update --init --remote --rebase
+    subfetch = submodule foreach git fetch
+    subrb = submodule foreach git rebase
+    upsh = push
+[color]
+    branch = always
+    diff = always
+    interactive = auto
+    pager = true
+    status = always
+    ui = true
+[core]
+    commentChar = ";"
+    excludesfile = ~/.gitglobalignore
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[push]
+    default = simple
+[rebase]
+    autoStash = true  # Git 2.6+ (https://stackoverflow.com/questions/30208928/can-git-pull-automatically-stash-and-pop-pending-changes)
+[submodule]
+    recurse = true
+[user]
+    email = atthavit@gmail.com
+    name = Atthavit Wannasakwong
+[color "diff"]
+    meta = 230
+    frag = 214
+    old = 167
+    new = 77
