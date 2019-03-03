@@ -156,6 +156,10 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_fixers = {
     \ 'python': ['yapf'],
     \}
+let g:ale_linters = {
+    \ 'go': ['golangci-lint'],
+    \}
+let g:ale_go_golangci_lint_options = '--fast --disable typecheck'
 
 " vim-airline
 set laststatus=2
