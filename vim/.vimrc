@@ -4,7 +4,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
-Plug 'w0rp/ale'
+Plug 'w0rp/ale', { 'tag': 'v2.4.0' }
 Plug 'mattn/emmet-vim'
 Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
 Plug 'tpope/vim-unimpaired'
@@ -18,7 +18,7 @@ Plug 'Konfekt/FastFold'
 Plug 'johngrib/vim-game-code-break', { 'on': 'VimGameCodeBreak' }
 Plug 'Chiel92/vim-autoformat'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'tag': 'v1.20' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --completion --no-key-bindings --no-update-rc'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
@@ -79,6 +79,7 @@ au CursorHold,CursorHoldI * checktime
 
 filetype plugin on
 autocmd FileType go setlocal noet ts=4 sw=4 sts =4
+autocmd FileType haskell setlocal sw=2 ts=2 sts=2
 autocmd FileType html setlocal sw=2 ts=2 sts=2
 autocmd FileType javascript setlocal sw=2 ts=2 sts=2
 autocmd FileType python setlocal omnifunc=jedi#completions
@@ -156,10 +157,10 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_fixers = {
     \ 'python': ['yapf'],
     \}
-let g:ale_linters = {
-    \ 'go': ['golangci-lint'],
-    \}
-let g:ale_go_golangci_lint_options = '--fast --disable typecheck'
+" let g:ale_linters = {
+"     \ 'go': ['golangci-lint'],
+"     \}
+" let g:ale_go_golangci_lint_options = '--fast --disable typecheck'
 
 " vim-airline
 set laststatus=2
