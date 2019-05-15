@@ -33,6 +33,7 @@ Plug 'roxma/nvim-yarp', { 'for': 'python' }
 Plug 'roxma/vim-hug-neovim-rpc', { 'for': 'python' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'fisadev/vim-isort', { 'for': 'python' }
+Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.67', 'do': './install.sh'}
 
 " Theme
 Plug 'morhetz/gruvbox'
@@ -80,6 +81,7 @@ au CursorHold,CursorHoldI * checktime
 filetype plugin on
 autocmd FileType go setlocal noet ts=4 sw=4 sts =4
 autocmd FileType haskell setlocal sw=2 ts=2 sts=2
+autocmd FileType groovy setlocal sw=2 ts=2 sts=2
 autocmd FileType html setlocal sw=2 ts=2 sts=2
 autocmd FileType javascript setlocal sw=2 ts=2 sts=2
 autocmd FileType python setlocal omnifunc=jedi#completions
@@ -239,3 +241,6 @@ let g:polyglot_disabled = ['markdown', 'go']
 
 " vim-vue in vim-polyglot
 let g:vue_disable_pre_processors=1
+
+" elm in vim-polyglot
+let g:elm_setup_keybindings = 0
