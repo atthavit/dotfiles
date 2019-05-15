@@ -25,14 +25,6 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'RRethy/vim-illuminate'
 Plug 'SirVer/ultisnips'
 Plug 'sheerun/vim-polyglot'
-" Python plugins
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-Plug 'Shougo/deoplete.nvim', { 'for': 'python' }
-Plug 'roxma/nvim-yarp', { 'for': 'python' }
-Plug 'roxma/vim-hug-neovim-rpc', { 'for': 'python' }
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'fisadev/vim-isort', { 'for': 'python' }
 Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.67', 'do': './install.sh'}
 
 " Theme
@@ -84,7 +76,6 @@ autocmd FileType haskell setlocal sw=2 ts=2 sts=2
 autocmd FileType groovy setlocal sw=2 ts=2 sts=2
 autocmd FileType html setlocal sw=2 ts=2 sts=2
 autocmd FileType javascript setlocal sw=2 ts=2 sts=2
-autocmd FileType python setlocal omnifunc=jedi#completions
 autocmd FileType terraform setlocal sw=2 ts=2 sts=2 commentstring=#%s
 autocmd FileType vue setlocal sw=2 ts=2 sts=2
 autocmd FileType yaml setlocal sw=2 ts=2 sts=2
@@ -108,9 +99,6 @@ vnoremap <leader>e64 c<c-r>=substitute(system('base64 --wrap=0', @"), '\n$', '',
 vnoremap <leader>d64 c<c-r>=substitute(system('base64 --decode --wrap=0', @"), '\n$', '', 'g')<esc>
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-x><C-o>
-
-" see https://github.com/Shougo/deoplete.nvim/issues/83
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<cr>")
 
 " Jump between html tags
 runtime macros/matchit.vim
@@ -192,20 +180,9 @@ let g:gitgutter_max_signs = 1000
 " vim-indent-guides
 let g:indent_guides_guide_size = 1
 
-" jedi-vim
-let g:jedi#force_py_version = 3
-
 " vim-autoformat
 noremap <F3> :Autoformat<CR>
 let g:formatdef_yapf = "'yapf -l '.a:firstline.'-'.a:lastline"  " to use yapf settings from config file
-
-" vim-isort
-let g:vim_isort_python_version = 'python3'
-
-" jedi-vim
-let g:jedi#completions_enabled = 0  " use deoplete-jedi instead
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#force_py_version = 3
 
 " gundo.vim
 nnoremap <F6> :GundoToggle<CR>
@@ -225,9 +202,6 @@ autocmd Filetype go nmap <Leader>i :GoInfo<CR>
 autocmd Filetype go nmap <leader>t :GoTest -short<cr>
 autocmd Filetype go nmap <leader>cov :GoCoverageToggle<cr>
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
-
 function! RemoveTrailingSpaces(...)
     %s/\s*$//
     ''
@@ -244,3 +218,9 @@ let g:vue_disable_pre_processors=1
 
 " elm in vim-polyglot
 let g:elm_setup_keybindings = 0
+
+" coc.vim
+let g:coc_global_extensions = [
+\ 'coc-json',
+\ 'coc-python',
+\]
