@@ -146,11 +146,14 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_fixers = {
     \ 'python': ['yapf'],
+    \ 'elm': ['elm-format'],
     \}
 " let g:ale_linters = {
 "     \ 'go': ['golangci-lint'],
 "     \}
 " let g:ale_go_golangci_lint_options = '--fast --disable typecheck'
+let g:ale_elm_format_options="--yes --elm-version=0.19"
+let g:ale_fix_on_save=1
 
 " vim-airline
 set laststatus=2
@@ -218,6 +221,7 @@ let g:vue_disable_pre_processors=1
 
 " elm in vim-polyglot
 let g:elm_setup_keybindings = 0
+let g:elm_format_autosave = 0
 
 " coc.vim
 let g:coc_global_extensions = [
