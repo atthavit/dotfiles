@@ -1,7 +1,7 @@
 [alias]
     a = add
     aa = add -A :/
-    b = branch
+    b = branch --sort=-committerdate
     co = checkout
     d = diff
     d1 = diff HEAD^!
