@@ -78,10 +78,10 @@ zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     ```
 
-* install powerlevel9k theme (https://github.com/bhilburn/powerlevel9k)  
+* install powerlevel10k theme (https://github.com/romkatv/powerlevel10k)  
 
     ```
-    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
     ```
 
 * install zsh-autosuggestions
