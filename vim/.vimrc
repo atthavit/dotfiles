@@ -4,7 +4,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
-Plug 'w0rp/ale', { 'tag': 'v2.4.0' }
+Plug 'w0rp/ale', { 'tag': 'v2.5.0' }
 Plug 'mattn/emmet-vim'
 Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
 Plug 'tpope/vim-unimpaired'
@@ -25,7 +25,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'RRethy/vim-illuminate'
 Plug 'SirVer/ultisnips'
 Plug 'sheerun/vim-polyglot'
-Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.67', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.71', 'do': './install.sh'}
 
 " Theme
 Plug 'morhetz/gruvbox'
@@ -99,6 +99,12 @@ vnoremap <leader>e64 c<c-r>=substitute(system('base64 --wrap=0', @"), '\n$', '',
 vnoremap <leader>d64 c<c-r>=substitute(system('base64 --decode --wrap=0', @"), '\n$', '', 'g')<esc>
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-x><C-o>
+
+" netrw
+let g:netrw_banner = 0
+let g:netrw_browse_split = 2
+let g:netrw_winsize = 25
+noremap <Leader>n :Lexplore<CR>
 
 " Jump between html tags
 runtime macros/matchit.vim
