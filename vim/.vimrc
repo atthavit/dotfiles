@@ -26,6 +26,7 @@ Plug 'RRethy/vim-illuminate'
 Plug 'SirVer/ultisnips'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.71', 'do': './install.sh'}
+Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
 
 " Theme
 Plug 'morhetz/gruvbox'
@@ -80,15 +81,6 @@ autocmd FileType terraform setlocal sw=2 ts=2 sts=2 commentstring=#%s
 autocmd FileType vue setlocal sw=2 ts=2 sts=2
 autocmd FileType yaml setlocal sw=2 ts=2 sts=2
 
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-
 cmap w!! w !sudo tee %
 " get the dir of current buffer in command mode
 cnoremap <Leader>d <C-R>=expand("%:p:h")."/"<CR>
@@ -99,6 +91,9 @@ vnoremap <leader>e64 c<c-r>=substitute(system('base64 --wrap=0', @"), '\n$', '',
 vnoremap <leader>d64 c<c-r>=substitute(system('base64 --decode --wrap=0', @"), '\n$', '', 'g')<esc>
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-x><C-o>
+" ex mode
+nnoremap Q <nop>
+nnoremap q: <nop>
 
 " netrw
 let g:netrw_banner = 0
@@ -234,3 +229,6 @@ let g:coc_global_extensions = [
 \ 'coc-json',
 \ 'coc-python',
 \]
+
+" rainbow
+map <leader>r :RainbowLevelsToggle<cr>
