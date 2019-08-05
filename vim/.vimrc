@@ -27,6 +27,7 @@ Plug 'SirVer/ultisnips'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.71', 'do': './install.sh'}
 Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
+Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 
 " Theme
 Plug 'morhetz/gruvbox'
@@ -80,6 +81,7 @@ autocmd FileType javascript setlocal sw=2 ts=2 sts=2
 autocmd FileType terraform setlocal sw=2 ts=2 sts=2 commentstring=#%s
 autocmd FileType vue setlocal sw=2 ts=2 sts=2
 autocmd FileType yaml setlocal sw=2 ts=2 sts=2
+autocmd FileType proto setlocal sw=2 ts=2 sts=2 commentstring=//%s
 
 cmap w!! w !sudo tee %
 " get the dir of current buffer in command mode
