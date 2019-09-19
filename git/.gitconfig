@@ -1,7 +1,7 @@
 [alias]
     a = add
     aa = add -A :/
-    b = branch --sort=-committerdate
+    b = branch -v --sort=-committerdate
     co = checkout
     d = diff
     d1 = diff HEAD^!
@@ -53,3 +53,5 @@
     frag = 214
     old = 167
     new = 77
+[diff "sopsdiffer"]
+	textconv = sops -d
