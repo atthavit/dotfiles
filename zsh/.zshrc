@@ -75,6 +75,7 @@ export GOPATH="$HOME/go"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.npm-global/bin:$PATH"
 export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
+export PATH="$HOME/.mix/escripts:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 

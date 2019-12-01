@@ -28,6 +28,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.71', 'do': './install.sh'}
 Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
 Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
+Plug 'psliwka/vim-smoothie'
 
 " Theme
 Plug 'morhetz/gruvbox'
@@ -234,3 +235,6 @@ let g:coc_global_extensions = [
 
 " rainbow
 map <leader>r :RainbowLevelsToggle<cr>
+
+" smoothie
+let g:smoothie_base_speed = 20
