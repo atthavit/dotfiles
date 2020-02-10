@@ -25,7 +25,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'RRethy/vim-illuminate'
 Plug 'SirVer/ultisnips'
 Plug 'sheerun/vim-polyglot'
-Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.71', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.74', 'do': './install.sh'}
 Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
 Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 
@@ -151,9 +151,9 @@ let g:ale_fixers = {
     \ 'python': ['yapf'],
     \ 'elm': ['elm-format'],
     \}
-" let g:ale_linters = {
-"     \ 'go': ['golangci-lint'],
-"     \}
+let g:ale_linters = {
+    \ 'python': ['flake8'],
+    \}
 " let g:ale_go_golangci_lint_options = '--fast --disable typecheck'
 let g:ale_elm_format_options="--yes --elm-version=0.19"
 let g:ale_fix_on_save=1
@@ -217,7 +217,7 @@ endfunction
 let g:terraform_fold_sections=1
 
 " vim-polyglot
-let g:polyglot_disabled = ['markdown', 'go']
+let g:polyglot_disabled = ['markdown', 'go', 'python']
 
 " vim-vue in vim-polyglot
 let g:vue_disable_pre_processors=1
