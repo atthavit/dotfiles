@@ -2,6 +2,7 @@
     a = add
     aa = add -A :/
     b = branch -v --sort=-committerdate
+    br = branch -v --sort=-committerdate --remote
     co = checkout
     d = diff
     d1 = diff HEAD^!
