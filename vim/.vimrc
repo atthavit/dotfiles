@@ -28,6 +28,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.74', 'do': './install.sh'}
 Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
 Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
 " Theme
 Plug 'morhetz/gruvbox'
@@ -202,7 +203,7 @@ noremap <Leader>t :TagbarToggle<CR>
 
 " vim-go
 let g:go_fmt_command = 'goimports'
-let g:go_addtags_transform = 'camelcase'
+let g:go_addtags_transform = 'snakecase'
 autocmd Filetype go nmap <Leader>d :GoDeclsDir<CR>
 autocmd Filetype go nmap <Leader>i :GoInfo<CR>
 autocmd Filetype go nmap <leader>t :GoTest -short<cr>
@@ -234,3 +235,6 @@ let g:coc_global_extensions = [
 
 " rainbow
 map <leader>r :RainbowLevelsToggle<cr>
+
+" rust.vim
+let g:rustfmt_autosave = 1
