@@ -115,6 +115,7 @@ elif [ -e "/run/user/$UID/gnupg/S.gpg-agent.ssh" ]; then
     export SSH_AUTH_SOCK=/run/user/$UID/gnupg/S.gpg-agent.ssh
 fi
 
+VIRTUALENVWRAPPER_PYTHON=python3
 VENVWRAPPER=~/.local/bin/virtualenvwrapper.sh
 if [ -f $VENVWRAPPER ]; then
     source $VENVWRAPPER
