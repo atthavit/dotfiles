@@ -158,6 +158,7 @@ let g:ale_linters = {
 " let g:ale_go_golangci_lint_options = '--fast --disable typecheck'
 let g:ale_elm_format_options="--yes --elm-version=0.19"
 let g:ale_fix_on_save=1
+let g:ale_fix_on_save_ignore=['yapf']
 
 " vim-airline
 set laststatus=2
