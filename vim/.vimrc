@@ -29,6 +29,7 @@ Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.74', 'do': './install.sh'}
 Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
 Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'neovimhaskell/haskell-vim'
 
 " Theme
 Plug 'morhetz/gruvbox'
@@ -239,3 +240,6 @@ map <leader>r :RainbowLevelsToggle<cr>
 
 " rust.vim
 let g:rustfmt_autosave = 1
+
+" haskell-vim
+let g:haskell_indent_if = 0
