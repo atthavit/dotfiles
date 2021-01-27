@@ -1,12 +1,20 @@
+alias vim=nvim
 alias dcp='docker-compose'
 alias g='git'
 alias gs='git status'
 alias gti='git'
 alias igt='git'
 alias k='kubectl'
-alias l='ls -F --color'
-alias ll='\ls -lh --group-directories-first --color'
-alias ls='ls --color'
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias l='ls -FG'
+    alias ll='\ls -lhFG'
+else
+    alias l='ls -F --color'
+    alias ll='\ls -lh --group-directories-first --color'
+    alias ls='ls --color'
+fi
+
 alias mux='tmuxinator'
 alias wo='workon'
 
