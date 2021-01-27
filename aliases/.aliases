@@ -1,4 +1,5 @@
 alias vim=nvim
+alias nvimrc='vim ~/.config/nvim/init.vim'
 alias dcp='docker-compose'
 alias g='git'
 alias gs='git status'
