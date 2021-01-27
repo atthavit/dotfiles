@@ -1,0 +1,3 @@
+source ~/.vimrc
+
+nnoremap <Leader>w :w<CR>
