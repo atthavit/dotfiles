@@ -56,3 +56,8 @@
     new = 77
 [diff "sopsdiffer"]
 	textconv = sops -d
+
+[url "git@gitlab.com:"]
+    insteadOf = https://gitlab.com/
+[url "git@github.com:"]
+	insteadOf = https://github.com/
