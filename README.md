@@ -25,30 +25,20 @@ fzf
     ```
 
 
-vim
-===
-* Vim 8+
-* More info <https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source>
-* compile vim from source
-
-    ```
-    ./configure --enable-gui --with-features=huge --enable-python3interp --with-x
-    ```
-
-* `grep X11 src/auto/config.h` should see `#define HAVE_X11 1`
-
-* `make && sudo make install`
-
+nvim
+====
+* install neovim (https://github.com/neovim/neovim)
 * install vim-plug (https://github.com/junegunn/vim-plug)  
 
     ```
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     ```
 
 
+* install pynvim (https://github.com/neovim/pynvim)
 * powerline fonts https://github.com/powerline/fonts  
-* install plugins in vim
+* install plugins
 
     ```
     :PlugInstall

@@ -1,0 +1,245 @@
+" vim-polyglot
+let g:polyglot_disabled = ['markdown', 'go', 'python']
+
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'godlygeek/tabular'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'tpope/vim-fugitive'
+Plug 'w0rp/ale', { 'tag': 'v2.5.0' }
+Plug 'mattn/emmet-vim'
+Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
+Plug 'tpope/vim-unimpaired'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'ap/vim-css-color'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-commentary'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'tmhedberg/SimpylFold'
+Plug 'Konfekt/FastFold'
+Plug 'johngrib/vim-game-code-break', { 'on': 'VimGameCodeBreak' }
+Plug 'Chiel92/vim-autoformat'
+Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+Plug 'fatih/vim-go', { 'commit': '007d9bc', 'do': ':GoUpdateBinaries' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --completion --no-key-bindings --no-update-rc'}
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo'
+Plug 'RRethy/vim-illuminate'
+Plug 'SirVer/ultisnips'
+Plug 'sheerun/vim-polyglot'
+Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.74', 'do': './install.sh'}
+Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
+Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'neovimhaskell/haskell-vim'
+
+" Theme
+Plug 'morhetz/gruvbox'
+call plug#end()
+
+set nocompatible
+syntax enable
+set t_Co=256
+
+set background=dark
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
+" background issue in tmux (https://github.com/morhetz/gruvbox/issues/81)
+set t_ut=
+
+set nu
+set relativenumber
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set showcmd
+set incsearch
+set hlsearch
+set nowrap
+set hidden
+set splitright
+set splitbelow
+set backspace=2
+set encoding=utf-8
+set tags=./tags;,tags;,.git/tags;  " find tags file in file dir, parent dirs and .git dir
+set smartcase
+set ignorecase
+set wildmenu
+set wildmode=list:longest,full
+set nofoldenable
+set timeoutlen=500
+
+" auto-reload
+set autoread
+au FocusGained,BufEnter * checktime
+au CursorHold,CursorHoldI * checktime
+
+filetype plugin on
+autocmd FileType go setlocal noet ts=4 sw=4 sts =4
+autocmd FileType haskell setlocal sw=2 ts=2 sts=2
+autocmd FileType groovy setlocal sw=2 ts=2 sts=2
+autocmd FileType html setlocal sw=2 ts=2 sts=2
+autocmd FileType javascript setlocal sw=2 ts=2 sts=2
+autocmd FileType terraform setlocal sw=2 ts=2 sts=2 commentstring=#%s
+autocmd FileType vue setlocal sw=2 ts=2 sts=2
+autocmd FileType yaml setlocal sw=2 ts=2 sts=2
+autocmd FileType proto setlocal sw=2 ts=2 sts=2 commentstring=//%s
+
+cmap w!! w !sudo tee %
+" get the dir of current buffer in command mode
+cnoremap <Leader>d <C-R>=expand("%:p:h")."/"<CR>
+cnoremap <Leader>m mks! ~/.vim<Left><Left><Left><Left>
+nnoremap <Leader>w :update<CR>
+nnoremap <Leader>q :q<CR>
+vnoremap <leader>e64 c<c-r>=substitute(system('base64 --wrap=0', @"), '\n$', '', 'g')<esc>
+vnoremap <leader>d64 c<c-r>=substitute(system('base64 --decode --wrap=0', @"), '\n$', '', 'g')<esc>
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <C-x><C-o>
+" ex mode
+nnoremap Q <nop>
+nnoremap q: <nop>
+
+" netrw
+let g:netrw_banner = 0
+let g:netrw_browse_split = 2
+let g:netrw_winsize = 25
+noremap <Leader>n :Lexplore<CR>
+
+" Jump between html tags
+runtime macros/matchit.vim
+
+" GUI
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+set mouse=c
+
+" fzf
+nnoremap <C-p> :FZF<CR>
+nnoremap <C-n> :Tags<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>l :Lines<CR>
+nnoremap <Leader>c :Commits!<CR>
+nnoremap <Leader>m :Maps<CR>
+let g:fzf_layout = { 'down': '~30%' }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+let g:fzf_commits_log_options = '--graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Ag! - Start fzf in fullscreen with preview window
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('right:50%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+" ALE
+filetype off
+let &runtimepath.=',~/.vim/bundle/ale'
+filetype plugin on
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_fixers = {
+    \ 'python': ['yapf'],
+    \ 'elm': ['elm-format'],
+    \}
+let g:ale_linters = {
+    \ 'python': ['flake8'],
+    \}
+" let g:ale_go_golangci_lint_options = '--fast --disable typecheck'
+let g:ale_elm_format_options="--yes --elm-version=0.19"
+let g:ale_fix_on_save=1
+let g:ale_fix_on_save_ignore=['yapf']
+
+" vim-airline
+set laststatus=2
+let g:airline_theme='powerlineish'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 0
+
+" vim-table-mode
+let g:table_mode_corner="|" " markdown-compatible
+
+" MatchTagAlways
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \ 'htmldjango' : 1,
+    \ 'vue' : 1,
+    \}
+
+" vim-gitgutter
+set updatetime=250
+let g:gitgutter_max_signs = 1000
+
+" vim-indent-guides
+let g:indent_guides_guide_size = 1
+
+" vim-autoformat
+noremap <F3> :Autoformat<CR>
+let g:formatdef_yapf = "'yapf -l '.a:firstline.'-'.a:lastline"  " to use yapf settings from config file
+
+" gundo.vim
+nnoremap <F6> :GundoToggle<CR>
+let g:gundo_prefer_python3 = 1
+
+" emmet-vim
+let g:user_emmet_leader_key='<Leader><Leader>'
+
+" tagbar
+noremap <Leader>t :TagbarToggle<CR>
+
+" vim-go
+let g:go_fmt_command = 'goimports'
+let g:go_addtags_transform = 'camelcase'
+autocmd Filetype go nmap <Leader>d :GoDeclsDir<CR>
+autocmd Filetype go nmap <Leader>i :GoInfo<CR>
+autocmd Filetype go nmap <leader>t :GoTest -short<cr>
+autocmd Filetype go nmap <leader>cov :GoCoverageToggle<cr>
+
+function! RemoveTrailingSpaces(...)
+    %s/\s*$//
+    ''
+endfunction
+
+" vim-terraform
+let g:terraform_fold_sections=1
+
+" vim-vue in vim-polyglot
+let g:vue_disable_pre_processors=1
+
+" elm in vim-polyglot
+let g:elm_setup_keybindings = 0
+let g:elm_format_autosave = 0
+
+" coc.vim
+let g:coc_global_extensions = [
+\ 'coc-json',
+\ 'coc-python',
+\ 'coc-flutter',
+\]
+
+" rainbow
+map <leader>r :RainbowLevelsToggle<cr>
+
+" rust.vim
+let g:rustfmt_autosave = 1
+
+" haskell-vim
+let g:haskell_indent_if = 0
