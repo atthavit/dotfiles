@@ -1,3 +1,7 @@
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    macos=true
+fi
+
 export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -64,6 +68,10 @@ POWERLEVEL9K_STATUS_OK_FOREGROUND=$GREEN
 POWERLEVEL9K_TIME_BACKGROUND=$LIGHT0
 POWERLEVEL9K_TIME_FOREGROUND=$DARK
 
+# POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
+# POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
+# POWERLEVEL9K_MODE='compatible'
+
 DEFAULT_USER=$USER
 
 # case-sensitive completion.
@@ -77,6 +85,12 @@ export PATH="$HOME/.npm-global/bin:$PATH"
 export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
 export PATH="$HOME/.mix/escripts:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="/usr/local/flutter/bin:$PATH"
+
+if [ "$macos" = true ]; then
+    export PATH="$HOME/Library/Python/3.8/bin:$PATH"
+    export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -116,7 +130,11 @@ elif [ -e "/run/user/$UID/gnupg/S.gpg-agent.ssh" ]; then
 fi
 
 VIRTUALENVWRAPPER_PYTHON=python3
-VENVWRAPPER=~/.local/bin/virtualenvwrapper.sh
+if [ "$macos" = true ]; then
+    VENVWRAPPER=~/Library/Python/3.9/bin/virtualenvwrapper.sh
+else
+    VENVWRAPPER=~/.local/bin/virtualenvwrapper.sh
+fi
 if [ -f $VENVWRAPPER ]; then
     source $VENVWRAPPER
 fi
@@ -130,6 +148,7 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore node_modules -g "
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
