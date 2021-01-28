@@ -20,6 +20,7 @@ Plug 'johngrib/vim-game-code-break', { 'on': 'VimGameCodeBreak' }
 Plug 'Chiel92/vim-autoformat'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'fatih/vim-go', { 'commit': '007d9bc', 'do': ':GoUpdateBinaries' }
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
@@ -28,6 +29,14 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
 Plug 'neovimhaskell/haskell-vim'
+Plug 'SirVer/ultisnips'
+if has('nvim')
+  Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/denite.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 " Theme
 Plug 'morhetz/gruvbox'
@@ -65,6 +74,7 @@ set wildmenu
 set wildmode=list:longest,full
 set nofoldenable
 set timeoutlen=500
+set foldmethod=syntax
 
 " auto-reload
 set autoread
@@ -202,11 +212,20 @@ noremap <Leader>t :TagbarToggle<CR>
 
 " vim-go
 let g:go_fmt_command = 'goimports'
-let g:go_addtags_transform = 'camelcase'
+let g:go_addtags_transform = 'snakecase'
+let g:go_auto_type_info = 1
+let g:go_highlight_types = 1
+let g:go_metalinter_autosave = 1
+" let g:go_auto_sameids = 1
 autocmd Filetype go nmap <Leader>d :GoDeclsDir<CR>
 autocmd Filetype go nmap <Leader>i :GoInfo<CR>
 autocmd Filetype go nmap <leader>t :GoTest -short<cr>
 autocmd Filetype go nmap <leader>cov :GoCoverageToggle<cr>
+autocmd Filetype go nmap <leader>im :GoImplements<cr>
+autocmd Filetype go nmap <leader>ref :GoReferrers<cr>
+autocmd Filetype go nmap <leader>ca :GoCaller<cr>
+autocmd Filetype go nmap [w :lprev<cr>
+autocmd Filetype go nmap ]w :lnext<cr>
 
 function! RemoveTrailingSpaces(...)
     %s/\s*$//
