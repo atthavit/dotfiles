@@ -7,31 +7,26 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
-Plug 'w0rp/ale', { 'tag': 'v2.5.0' }
+Plug 'dense-analysis/ale', { 'tag': 'v3.0.0' }
 Plug 'mattn/emmet-vim'
 Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
 Plug 'tpope/vim-unimpaired'
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'ap/vim-css-color'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tmhedberg/SimpylFold'
 Plug 'Konfekt/FastFold'
 Plug 'johngrib/vim-game-code-break', { 'on': 'VimGameCodeBreak' }
 Plug 'Chiel92/vim-autoformat'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'fatih/vim-go', { 'commit': '007d9bc', 'do': ':GoUpdateBinaries' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --completion --no-key-bindings --no-update-rc'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'RRethy/vim-illuminate'
-Plug 'SirVer/ultisnips'
 Plug 'sheerun/vim-polyglot'
-Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.74', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
-Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'neovimhaskell/haskell-vim'
 
 " Theme
