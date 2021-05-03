@@ -50,6 +50,12 @@ nvim
     python3 -m pip install --user flake8 jedi neovim
     ```
 
+* install xclip
+
+    ```
+    apt install xclip
+    ```
+
 
 tmux
 ====
