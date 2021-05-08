@@ -80,6 +80,7 @@ set foldmethod=syntax
 set autoread
 au FocusGained,BufEnter * checktime
 au CursorHold,CursorHoldI * checktime
+au BufNewFile,BufRead *.graphqls setfiletype graphql
 
 filetype plugin on
 autocmd FileType go setlocal noet ts=4 sw=4 sts =4
@@ -217,6 +218,7 @@ let g:go_addtags_transform = 'snakecase'
 let g:go_auto_type_info = 1
 let g:go_highlight_types = 1
 let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['golint']
 " let g:go_auto_sameids = 1
 autocmd Filetype go nmap <Leader>d :GoDeclsDir<CR>
 autocmd Filetype go nmap <Leader>i :GoInfo<CR>
