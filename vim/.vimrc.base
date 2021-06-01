@@ -89,6 +89,7 @@ autocmd FileType groovy setlocal sw=2 ts=2 sts=2
 autocmd FileType html setlocal sw=2 ts=2 sts=2
 autocmd FileType javascript setlocal sw=2 ts=2 sts=2
 autocmd FileType terraform setlocal sw=2 ts=2 sts=2 commentstring=#%s
+autocmd FileType vim setlocal sw=2 ts=2 sts=2
 autocmd FileType vue setlocal sw=2 ts=2 sts=2
 autocmd FileType yaml setlocal sw=2 ts=2 sts=2
 autocmd FileType proto setlocal sw=2 ts=2 sts=2 commentstring=//%s
@@ -99,8 +100,15 @@ cnoremap <Leader>d <C-R>=expand("%:p:h")."/"<CR>
 cnoremap <Leader>m mks! ~/.vim<Left><Left><Left><Left>
 nnoremap <Leader>w :update<CR>
 nnoremap <Leader>q :q<CR>
-vnoremap <leader>e64 c<c-r>=substitute(system('base64 --wrap=0', @"), '\n$', '', 'g')<esc>
-vnoremap <leader>d64 c<c-r>=substitute(system('base64 --decode --wrap=0', @"), '\n$', '', 'g')<esc>
+
+if has('mac')
+  vnoremap <leader>e64 c<c-r>=substitute(system('base64', @"), '\n$', '', 'g')<esc>
+  vnoremap <leader>d64 c<c-r>=substitute(system('base64 --decode', @"), '\n$', '', 'g')<esc>
+else
+  vnoremap <leader>e64 c<c-r>=substitute(system('base64 --wrap=0', @"), '\n$', '', 'g')<esc>
+  vnoremap <leader>d64 c<c-r>=substitute(system('base64 --decode --wrap=0', @"), '\n$', '', 'g')<esc>
+endif
+
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-x><C-o>
 " ex mode
