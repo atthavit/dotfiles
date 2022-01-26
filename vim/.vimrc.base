@@ -29,7 +29,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
 Plug 'neovimhaskell/haskell-vim'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
+Plug 'lpinilla/vim-codepainter'
 if has('nvim')
   Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -88,6 +89,7 @@ autocmd FileType haskell setlocal sw=2 ts=2 sts=2
 autocmd FileType groovy setlocal sw=2 ts=2 sts=2
 autocmd FileType html setlocal sw=2 ts=2 sts=2
 autocmd FileType javascript setlocal sw=2 ts=2 sts=2
+autocmd FileType typescript setlocal sw=2 ts=2 sts=2
 autocmd FileType terraform setlocal sw=2 ts=2 sts=2 commentstring=#%s
 autocmd FileType vim setlocal sw=2 ts=2 sts=2
 autocmd FileType vue setlocal sw=2 ts=2 sts=2
@@ -100,6 +102,7 @@ cnoremap <Leader>d <C-R>=expand("%:p:h")."/"<CR>
 cnoremap <Leader>m mks! ~/.vim<Left><Left><Left><Left>
 nnoremap <Leader>w :update<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader><F2> :PainterEraseAll<CR>
 
 if has('mac')
   vnoremap <leader>e64 c<c-r>=substitute(system('base64', @"), '\n$', '', 'g')<esc>
@@ -157,7 +160,7 @@ let g:fzf_commits_log_options = '--graph --pretty=format:"%Cred%h%Creset -%C(yel
 "   :Ag! - Start fzf in fullscreen with preview window
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,
-  \                 ' --hidden --ignore .git',
+  \                 ' --hidden --ignore .git --follow',
   \                 <bang>0 ? fzf#vim#with_preview('right:50%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
@@ -227,7 +230,7 @@ let g:go_fmt_command = 'goimports'
 let g:go_addtags_transform = 'snakecase'
 let g:go_auto_type_info = 1
 let g:go_highlight_types = 1
-let g:go_metalinter_autosave = 1
+" let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['golint']
 " let g:go_auto_sameids = 1
 autocmd Filetype go nmap <Leader>d :GoDeclsDir<CR>
