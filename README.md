@@ -25,8 +25,8 @@ fzf
     ```
 
 
-nvim
-====
+nvim (v0.6.1+)
+==============
 * install neovim (https://github.com/neovim/neovim)
 * install vim-plug (https://github.com/junegunn/vim-plug)  
 
@@ -36,18 +36,11 @@ nvim
     ```
 
 
-* install pynvim (https://github.com/neovim/pynvim)
 * powerline fonts https://github.com/powerline/fonts  
 * install plugins
 
     ```
     :PlugInstall
-    ```
-
-* install flake8, jedi, neovim(required by deoplete)
-
-    ```
-    python3 -m pip install --user flake8 jedi neovim
     ```
 
 * install xclip
@@ -92,25 +85,6 @@ zsh
     git clone https://github.com/wting/autojump.git
     cd autojump && ./install.py
     ```
-
-
-ctags
-=====
-
-    ctags -R --tag-relative=yes -o .git/tags .
-
-
-gpg
-===
-
-CentOS 7 / Fedora 27
-
-    yum install gnupg2 pinentry pinentry-qt4 gnupg2-smime pcsc-lite pcsc-lite-ccid
-
-Ubuntu 16.04/18.04
-
-    apt-get install gnupg2 pcscd scdaemon pinentry-qt
-
 
 npm
 ===

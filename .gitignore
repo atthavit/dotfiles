@@ -1,3 +1,4 @@
 powerline/.config/*
 !.gitignore
 !powerline/.config/powerline
+vim/.vim/plugged/

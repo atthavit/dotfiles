@@ -26,22 +26,19 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'RRethy/vim-illuminate'
 Plug 'sheerun/vim-polyglot'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
-Plug 'neovimhaskell/haskell-vim'
-" Plug 'SirVer/ultisnips'
 Plug 'lpinilla/vim-codepainter'
-if has('nvim')
-  Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/denite.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/vim-vsnip'
 
 " Theme
 Plug 'morhetz/gruvbox'
 call plug#end()
+
+:lua require('mylspconfig')
 
 set nocompatible
 syntax enable
@@ -228,20 +225,8 @@ noremap <Leader>t :TagbarToggle<CR>
 " vim-go
 let g:go_fmt_command = 'goimports'
 let g:go_addtags_transform = 'snakecase'
-let g:go_auto_type_info = 1
-let g:go_highlight_types = 1
-" let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['golint']
-" let g:go_auto_sameids = 1
-autocmd Filetype go nmap <Leader>d :GoDeclsDir<CR>
-autocmd Filetype go nmap <Leader>i :GoInfo<CR>
-autocmd Filetype go nmap <leader>t :GoTest -short<cr>
-autocmd Filetype go nmap <leader>cov :GoCoverageToggle<cr>
-autocmd Filetype go nmap <leader>im :GoImplements<cr>
-autocmd Filetype go nmap <leader>ref :GoReferrers<cr>
-autocmd Filetype go nmap <leader>ca :GoCaller<cr>
-autocmd Filetype go nmap [w :lprev<cr>
-autocmd Filetype go nmap ]w :lnext<cr>
+let g:go_def_mapping_enabled = 0
 
 function! RemoveTrailingSpaces(...)
     %s/\s*$//
@@ -257,13 +242,6 @@ let g:vue_disable_pre_processors=1
 " elm in vim-polyglot
 let g:elm_setup_keybindings = 0
 let g:elm_format_autosave = 0
-
-" coc.vim
-let g:coc_global_extensions = [
-\ 'coc-json',
-\ 'coc-python',
-\ 'coc-flutter',
-\]
 
 " rainbow
 map <leader>r :RainbowLevelsToggle<cr>
