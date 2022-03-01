@@ -7,7 +7,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
-Plug 'dense-analysis/ale', { 'tag': 'v3.0.0' }
 Plug 'mattn/emmet-vim'
 Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
 Plug 'tpope/vim-unimpaired'
@@ -92,6 +91,7 @@ autocmd FileType vim setlocal sw=2 ts=2 sts=2
 autocmd FileType vue setlocal sw=2 ts=2 sts=2
 autocmd FileType yaml setlocal sw=2 ts=2 sts=2
 autocmd FileType proto setlocal sw=2 ts=2 sts=2 commentstring=//%s
+autocmd FileType lua setlocal sw=2 ts=2 sts=2
 
 cmap w!! w !sudo tee %
 " get the dir of current buffer in command mode
@@ -162,24 +162,6 @@ command! -bang -nargs=* Ag
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
 
-" ALE
-filetype off
-let &runtimepath.=',~/.vim/bundle/ale'
-filetype plugin on
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_fixers = {
-    \ 'python': ['yapf'],
-    \ 'elm': ['elm-format'],
-    \}
-let g:ale_linters = {
-    \ 'python': ['flake8'],
-    \}
-" let g:ale_go_golangci_lint_options = '--fast --disable typecheck'
-let g:ale_elm_format_options="--yes --elm-version=0.19"
-let g:ale_fix_on_save=1
-let g:ale_fix_on_save_ignore=['yapf']
-
 " vim-airline
 set laststatus=2
 let g:airline_theme='powerlineish'
@@ -225,8 +207,9 @@ noremap <Leader>t :TagbarToggle<CR>
 " vim-go
 let g:go_fmt_command = 'goimports'
 let g:go_addtags_transform = 'snakecase'
-let g:go_metalinter_autosave_enabled = ['golint']
 let g:go_def_mapping_enabled = 0
+let g:go_gopls_enabled=0
+let g:go_highlight_types = 1
 
 function! RemoveTrailingSpaces(...)
     %s/\s*$//

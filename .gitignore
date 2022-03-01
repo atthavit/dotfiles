@@ -2,3 +2,5 @@ powerline/.config/*
 !.gitignore
 !powerline/.config/powerline
 vim/.vim/plugged/
+vim/.vim/autoload/
+vim/.config/nvim/.netrwhist
