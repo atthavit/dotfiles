@@ -205,11 +205,12 @@ let g:user_emmet_leader_key='<Leader><Leader>'
 noremap <Leader>t :TagbarToggle<CR>
 
 " vim-go
-let g:go_fmt_command = 'goimports'
+autocmd Filetype go nmap <leader>cov :GoCoverageToggle<cr>
 let g:go_addtags_transform = 'snakecase'
 let g:go_def_mapping_enabled = 0
-let g:go_gopls_enabled=0
-let g:go_highlight_types = 1
+let g:go_fmt_autosave= 0
+let g:go_gopls_enabled= 0
+let g:go_highlight_types = 0
 
 function! RemoveTrailingSpaces(...)
     %s/\s*$//
@@ -228,9 +229,3 @@ let g:elm_format_autosave = 0
 
 " rainbow
 map <leader>r :RainbowLevelsToggle<cr>
-
-" rust.vim
-let g:rustfmt_autosave = 1
-
-" haskell-vim
-let g:haskell_indent_if = 0

@@ -1,3 +1,19 @@
+-- from https://github.com/golang/tools/blob/master/gopls/doc/vim.md#imports
+function OrgImports(wait_ms)
+	local params = vim.lsp.util.make_range_params()
+	params.context = {only = {"source.organizeImports"}}
+	local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+	for _, res in pairs(result or {}) do
+		for _, r in pairs(res.result or {}) do
+			if r.edit then
+				vim.lsp.util.apply_workspace_edit(r.edit)
+			else
+				vim.lsp.buf.execute_command(r.command)
+			end
+		end
+	end
+end
+
 -- from
 -- https://github.com/neovim/nvim-lspconfig#suggested-configuration
 -- https://github.com/hrsh7th/nvim-cmp#setup
@@ -32,7 +48,7 @@ cmp.setup({
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<c-j>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<c-k>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<c-h>', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<c-h>', ':LspRestart<CR>', opts)
 
 
 local on_attach = function(client, bufnr)
@@ -75,3 +91,6 @@ lspconfig.gopls.setup {
     },
   },
 }
+
+vim.api.nvim_command('autocmd BufWritePre *.go lua vim.lsp.buf.formatting()')
+vim.api.nvim_command('autocmd BufWritePre *.go lua OrgImports(1000)')
