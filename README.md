@@ -43,12 +43,6 @@ nvim (v0.6.1+)
     :PlugInstall
     ```
 
-* install xclip
-
-    ```
-    apt install xclip
-    ```
-
 
 tmux
 ====
