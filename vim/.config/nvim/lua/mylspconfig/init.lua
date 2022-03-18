@@ -92,5 +92,19 @@ lspconfig.gopls.setup {
   },
 }
 
+lspconfig.pyright.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = 'workspace',
+        typeCheckingMode = 'off',
+      }
+    }
+  },
+}
+
 vim.api.nvim_command('autocmd BufWritePre *.go lua vim.lsp.buf.formatting()')
 vim.api.nvim_command('autocmd BufWritePre *.go lua OrgImports(1000)')
