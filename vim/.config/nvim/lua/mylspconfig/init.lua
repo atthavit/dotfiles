@@ -108,3 +108,7 @@ lspconfig.pyright.setup {
 
 vim.api.nvim_command('autocmd BufWritePre *.go lua vim.lsp.buf.formatting()')
 vim.api.nvim_command('autocmd BufWritePre *.go lua OrgImports(1000)')
+
+-- vim.lsp.set_log_level("debug")
+
+require "lsp_signature".setup()
