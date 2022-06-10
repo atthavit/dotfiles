@@ -3,6 +3,7 @@ cd ~
 git clone https://gitlab.com/nocchio/dotfiles.git
 cd dotfiles
 stow vim
+touch ~/.vimrc.local
 stow tmux
 stow aliases
 mkdir ~/.config
@@ -79,9 +80,3 @@ zsh
     git clone https://github.com/wting/autojump.git
     cd autojump && ./install.py
     ```
-
-npm
-===
-
-    mkdir ~/.npm-global
-    npm config set prefix ~/.npm-global

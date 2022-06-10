@@ -230,3 +230,7 @@ let g:elm_format_autosave = 0
 
 " rainbow
 map <leader>r :RainbowLevelsToggle<cr>
+
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif

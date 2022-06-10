@@ -3,4 +3,5 @@ powerline/.config/*
 !powerline/.config/powerline
 vim/.vim/plugged/
 vim/.vim/autoload/
+vim/.vimrc.local
 vim/.config/nvim/.netrwhist
