@@ -26,7 +26,7 @@ fzf
     ```
 
 
-nvim (v0.6.1+)
+nvim (v0.7.0+)
 ==============
 * install neovim (https://github.com/neovim/neovim)
 * install vim-plug (https://github.com/junegunn/vim-plug)  

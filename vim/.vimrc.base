@@ -1,22 +1,13 @@
-" vim-polyglot
-let g:polyglot_disabled = ['markdown', 'go', 'python']
-
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
-Plug 'valloric/MatchTagAlways'  " highlight enclosing html tags
 Plug 'tpope/vim-unimpaired'
 Plug 'ap/vim-css-color'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
-Plug 'tmhedberg/SimpylFold'
-Plug 'Konfekt/FastFold'
-Plug 'johngrib/vim-game-code-break', { 'on': 'VimGameCodeBreak' }
-Plug 'Chiel92/vim-autoformat'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'fatih/vim-go', { 'commit': '007d9bc', 'do': ':GoUpdateBinaries' }
 Plug 'AndrewRadev/splitjoin.vim'
@@ -24,22 +15,25 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'RRethy/vim-illuminate'
-Plug 'sheerun/vim-polyglot'
 Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
 Plug 'lpinilla/vim-codepainter'
 Plug 'ruanyl/vim-gh-line'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'sbdchd/neoformat'
+Plug 'andymass/vim-matchup'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Theme
 Plug 'morhetz/gruvbox'
 call plug#end()
 
-:lua require('mylspconfig')
+:lua require('myconfig')
 
 set nocompatible
 syntax enable
@@ -73,7 +67,6 @@ set wildmenu
 set wildmode=list:longest,full
 set nofoldenable
 set timeoutlen=500
-set foldmethod=syntax
 
 " auto-reload
 set autoread
@@ -101,6 +94,7 @@ cnoremap <Leader>d <C-R>=expand("%:p:h")."/"<CR>
 cnoremap <Leader>m mks! ~/.vim<Left><Left><Left><Left>
 nnoremap <Leader>w :update<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>f :Neoformat<CR>
 nnoremap <Leader><F2> :PainterEraseAll<CR>
 
 if has('mac')
@@ -175,26 +169,9 @@ let g:airline#extensions#virtualenv#enabled = 0
 " vim-table-mode
 let g:table_mode_corner="|" " markdown-compatible
 
-" MatchTagAlways
-let g:mta_filetypes = {
-    \ 'html' : 1,
-    \ 'xhtml' : 1,
-    \ 'xml' : 1,
-    \ 'jinja' : 1,
-    \ 'htmldjango' : 1,
-    \ 'vue' : 1,
-    \}
-
 " vim-gitgutter
 set updatetime=250
 let g:gitgutter_max_signs = 1000
-
-" vim-indent-guides
-let g:indent_guides_guide_size = 1
-
-" vim-autoformat
-noremap <F3> :Autoformat<CR>
-let g:formatdef_yapf = "'yapf -l '.a:firstline.'-'.a:lastline"  " to use yapf settings from config file
 
 " gundo.vim
 nnoremap <F6> :GundoToggle<CR>
@@ -202,9 +179,6 @@ let g:gundo_prefer_python3 = 1
 
 " emmet-vim
 let g:user_emmet_leader_key='<Leader><Leader>'
-
-" tagbar
-noremap <Leader>t :TagbarToggle<CR>
 
 " vim-go
 autocmd Filetype go nmap <leader>cov :GoCoverageToggle<cr>
@@ -214,23 +188,21 @@ let g:go_fmt_autosave= 0
 let g:go_gopls_enabled= 0
 let g:go_highlight_types = 0
 
-function! RemoveTrailingSpaces(...)
-    %s/\s*$//
-    ''
-endfunction
-
-" vim-terraform
-let g:terraform_fold_sections=1
-
-" vim-vue in vim-polyglot
-let g:vue_disable_pre_processors=1
-
-" elm in vim-polyglot
-let g:elm_setup_keybindings = 0
-let g:elm_format_autosave = 0
-
 " rainbow
 map <leader>r :RainbowLevelsToggle<cr>
+
+" vim-gh-line
+let g:gh_open_command = '' " to print url
+
+" neoformat
+augroup fmt
+autocmd!
+  autocmd BufWritePre *.go Neoformat
+augroup END
+
+" nvim-treesitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
