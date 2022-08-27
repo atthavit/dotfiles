@@ -155,3 +155,6 @@ export NVM_DIR="$HOME/.nvm"
 # terraform
 export TF_CLI_ARGS_plan="-parallelism=100"
 export TF_CLI_ARGS_apply="-parallelism=100"
+
+. $HOME/.asdf/asdf.sh
+. "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"

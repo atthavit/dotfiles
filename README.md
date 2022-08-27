@@ -1,6 +1,6 @@
 ```
 cd ~
-git clone https://gitlab.com/nocchio/dotfiles.git
+git clone https://github.com/atthavit/dotfiles.git
 cd dotfiles
 stow vim
 touch ~/.vimrc.local
@@ -9,7 +9,8 @@ stow aliases
 mkdir ~/.config
 mkdir ~/.gnupg && stow gpg
 stow powerline
-stow flake8
+stow dotenv
+stow zsh
 ...
 ```
 fzf
@@ -79,4 +80,12 @@ zsh
     ```
     git clone https://github.com/wting/autojump.git
     cd autojump && ./install.py
+    ```
+
+* install asdf, direnv
+
+    ```
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+    asdf plugin-add direnv
+    asdf global direnv latest
     ```
