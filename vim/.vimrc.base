@@ -17,10 +17,12 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'RRethy/vim-illuminate'
 Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
 Plug 'lpinilla/vim-codepainter'
-Plug 'ruanyl/vim-gh-line'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'sbdchd/neoformat'
 Plug 'andymass/vim-matchup'
+Plug 'previm/previm'
+Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser-github.vim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -96,6 +98,8 @@ nnoremap <Leader>w :update<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>f :Neoformat<CR>
 nnoremap <Leader><F2> :PainterEraseAll<CR>
+nnoremap <Leader>gh :OpenGithubFile<CR>
+nnoremap <Leader>md :PrevimOpen<CR>
 
 if has('mac')
   vnoremap <leader>e64 c<c-r>=substitute(system('base64', @"), '\n$', '', 'g')<esc>
@@ -191,9 +195,6 @@ let g:go_highlight_types = 0
 " rainbow
 map <leader>r :RainbowLevelsToggle<cr>
 
-" vim-gh-line
-let g:gh_open_command = '' " to print url
-
 " neoformat
 augroup fmt
 autocmd!
@@ -203,6 +204,9 @@ augroup END
 " nvim-treesitter
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
+" tyru/open-browser-github.vim
+let g:openbrowser_github_select_current_line = 1
 
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local

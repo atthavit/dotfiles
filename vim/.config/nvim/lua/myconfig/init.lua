@@ -46,8 +46,8 @@ cmp.setup({
 })
 
 local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '<c-j>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<c-k>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<c-k>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<c-j>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<c-h>', ':LspRestart<CR>', opts)
 
 
