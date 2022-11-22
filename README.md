@@ -81,11 +81,3 @@ zsh
     git clone https://github.com/wting/autojump.git
     cd autojump && ./install.py
     ```
-
-* install asdf, direnv
-
-    ```
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
-    asdf plugin-add direnv
-    asdf global direnv latest
-    ```
