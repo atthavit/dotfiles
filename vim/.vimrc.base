@@ -23,6 +23,7 @@ Plug 'andymass/vim-matchup'
 Plug 'previm/previm'
 Plug 'tyru/open-browser.vim'
 Plug 'tyru/open-browser-github.vim'
+Plug 'isobit/vim-caddyfile'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
