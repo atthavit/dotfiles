@@ -31,6 +31,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'folke/trouble.nvim'
 
 " Theme
 Plug 'ellisonleao/gruvbox.nvim'
