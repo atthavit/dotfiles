@@ -114,7 +114,7 @@ lspconfig.pyright.setup {
 require "lsp_signature".setup()
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "go" },
+  ensure_installed = { "go", "hcl", "yaml", "python", "json" },
   sync_install = false,
   highlight = {
     enable = true,
@@ -124,3 +124,20 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
 }
+
+require('flash').setup({
+  label = {
+    style = 'eol',
+    min_pattern_length = 2,
+  },
+  modes = {
+    char = {
+      enabled = false,
+    },
+  },
+})
+
+require('gruvbox').setup({
+  contrast = 'dark',
+})
+vim.cmd('colorscheme gruvbox')

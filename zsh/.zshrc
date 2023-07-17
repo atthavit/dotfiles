@@ -5,7 +5,6 @@ fi
 export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
-export TERM="xterm-256color"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv context dir dir_writable vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(kubecontext command_execution_time status time)
@@ -105,8 +104,6 @@ bindkey  "^[[1~"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[4~"   end-of-line
 bindkey '^R' history-incremental-search-backward
-
-[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 
 setopt No_histverify
 unsetopt autocd

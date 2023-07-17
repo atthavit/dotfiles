@@ -9,7 +9,7 @@ Plug 'ap/vim-css-color'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-Plug 'fatih/vim-go', { 'commit': '007d9bc', 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -23,7 +23,7 @@ Plug 'andymass/vim-matchup'
 Plug 'previm/previm'
 Plug 'tyru/open-browser.vim'
 Plug 'tyru/open-browser-github.vim'
-Plug 'isobit/vim-caddyfile'
+Plug 'folke/flash.nvim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -33,7 +33,7 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Theme
-Plug 'morhetz/gruvbox'
+Plug 'ellisonleao/gruvbox.nvim'
 call plug#end()
 
 :lua require('myconfig')
@@ -41,12 +41,6 @@ call plug#end()
 set nocompatible
 syntax enable
 set t_Co=256
-
-set background=dark
-let g:gruvbox_contrast_dark='hard'
-colorscheme gruvbox
-" background issue in tmux (https://github.com/morhetz/gruvbox/issues/81)
-set t_ut=
 
 set nu
 set relativenumber
@@ -101,6 +95,7 @@ nnoremap <Leader>f :Neoformat<CR>
 nnoremap <Leader><F2> :PainterEraseAll<CR>
 nnoremap <Leader>gh :OpenGithubFile<CR>
 nnoremap <Leader>md :PrevimOpen<CR>
+nnoremap <space> za
 
 if has('mac')
   vnoremap <leader>e64 c<c-r>=substitute(system('base64', @"), '\n$', '', 'g')<esc>
