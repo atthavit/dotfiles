@@ -2,48 +2,20 @@
 cd ~
 git clone https://github.com/atthavit/dotfiles.git
 cd dotfiles
-stow vim
-touch ~/.vimrc.local
-stow tmux
-stow aliases
 mkdir ~/.config
-mkdir ~/.gnupg && stow gpg
+stow aliases
 stow powerline
-stow dotenv
+stow tmux
+stow nvim
 stow zsh
+stow direnv
+mkdir ~/.gnupg && stow gpg
 ...
 ```
-fzf
-===
 
-* install [ag](https://github.com/ggreer/the_silver_searcher)
-
-* install fzf
-
-    ```bash
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    cd ~/.fzf
-    ./install --completion --no-key-bindings --no-update-rc
-    ```
-
-
-nvim (v0.7.0+)
+nvim
 ==============
-* install neovim (https://github.com/neovim/neovim)
-* install vim-plug (https://github.com/junegunn/vim-plug)  
-
-    ```
-    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    ```
-
-
-* powerline fonts https://github.com/powerline/fonts  
-* install plugins
-
-    ```
-    :PlugInstall
-    ```
+* install [nerdfonts](https://www.nerdfonts.com/font-downloads)
 
 
 tmux

@@ -1,7 +1,8 @@
+alias vi=nvim
 alias vim=nvim
-alias vimrc='vim ~/.vimrc.base'
-alias vimrclocal='vim ~/.vimrc.local'
-alias nvimrc='vim ~/.config/nvim/init.vim'
+alias vimrc='vim ~/.config/nvim/init.lua'
+alias viminit='vim ~/.config/nvim/init.lua'
+alias nviminit='vim ~/.config/nvim/init.lua'
 alias dcp='docker-compose'
 alias g='git'
 alias gs='git status'
