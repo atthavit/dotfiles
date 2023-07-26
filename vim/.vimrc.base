@@ -18,7 +18,6 @@ Plug 'RRethy/vim-illuminate'
 Plug 'thiagoalessio/rainbow_levels.vim', { 'on': 'RainbowLevelsToggle' }
 Plug 'lpinilla/vim-codepainter'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'sbdchd/neoformat'
 Plug 'andymass/vim-matchup'
 Plug 'previm/previm'
 Plug 'tyru/open-browser.vim'
@@ -32,6 +31,8 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'folke/trouble.nvim'
+Plug 'williamboman/mason.nvim', { 'do': ':MasonUpdate' }
+Plug 'williamboman/mason-lspconfig.nvim'
 
 " Theme
 Plug 'ellisonleao/gruvbox.nvim'
@@ -191,12 +192,6 @@ let g:go_highlight_types = 0
 
 " rainbow
 map <leader>r :RainbowLevelsToggle<cr>
-
-" neoformat
-augroup fmt
-autocmd!
-  autocmd BufWritePre *.go Neoformat
-augroup END
 
 " nvim-treesitter
 set foldmethod=expr

@@ -72,7 +72,7 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require 'lspconfig'
-local servers = { 'pyright', 'yamlls', 'tsserver' }
+local servers = { 'pyright', 'yamlls', 'tsserver', 'golangci_lint_ls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -156,3 +156,8 @@ require("trouble").setup({
   },
   use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
 })
+
+require("mason").setup()
+require("mason-lspconfig").setup {
+  ensure_installed = { "golangci_lint_ls" },
+}
