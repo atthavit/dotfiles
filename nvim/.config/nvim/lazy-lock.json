@@ -21,6 +21,7 @@
   "previm": { "branch": "master", "commit": "dcda34b72f6b224602b02a179d4f35e06e53d465" },
   "rainbow_levels.vim": { "branch": "main", "commit": "e8badb7906b63d3639b840484e4370194de2b857" },
   "splitjoin.vim": { "branch": "main", "commit": "4073ac528b5e552a6b4347cacca9899f74b98843" },
+  "telescope-fzf-native.nvim": { "branch": "main", "commit": "9bc8237565ded606e6c366a71c64c0af25cd7a50" },
   "telescope.nvim": { "branch": "master", "commit": "1228f3b15ca3d9b95dcb92efda6a3448871030bd" },
   "trouble.nvim": { "branch": "main", "commit": "fc4bb22b1d2cd5eb46fe61a9f6d6416d742beb5c" },
   "vim-better-whitespace": { "branch": "master", "commit": "1b22dc57a2751c7afbc6025a7da39b7c22db635d" },

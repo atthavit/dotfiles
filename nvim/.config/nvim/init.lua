@@ -62,7 +62,6 @@ require('lazy').setup({
       vim.g.user_emmet_leader_key = '<leader><leader>'
     end,
   },
-  'ap/vim-css-color',
   {
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -107,7 +106,6 @@ require('lazy').setup({
       end
     },
   },
-  'tpope/vim-commentary',
   {
     'ray-x/go.nvim',
     dependencies = {  -- optional packages
@@ -129,15 +127,27 @@ require('lazy').setup({
       })
     end,
   },
-  'AndrewRadev/splitjoin.vim',
-  -- { 'junegunn/fzf', { build = {} } },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   {
     'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = { 'nvim-lua/plenary.nvim', 'telescope-fzf-native.nvim' },
     config = function()
       local actions = require('telescope.actions')
       require('telescope').setup({
+        extensions = {
+          fzf = {
+              fuzzy = true,                    -- false will only do exact matching
+              override_generic_sorter = true,  -- override the generic sorter
+              override_file_sorter = true,     -- override the file sorter
+              case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+          }
+        },
         defaults = {
+          layout_strategy = 'vertical',
+          layout_config = {
+            horizontal = { width = 0.90 },
+            vertical = { width = 0.90 },
+          },
           mappings = {
             i = {
               ['<c-k>'] = actions.move_selection_previous,
@@ -148,15 +158,15 @@ require('lazy').setup({
       })
     end,
     init = function()
+      require('telescope').load_extension('fzf')
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<c-p>', builtin.find_files)
+      vim.keymap.set('n', '<c-p>', builtin.git_files)
       vim.keymap.set('n', '<leader>b', builtin.buffers)
       vim.keymap.set('n', '<c-o>', builtin.treesitter)
       vim.keymap.set('n', '<leader>p', builtin.live_grep)
       vim.api.nvim_create_user_command('Ag', builtin.live_grep, {})
     end,
   },
-  'junegunn/vim-peekaboo',
   {
     'RRethy/vim-illuminate',
     dependencies = {'gruvbox.nvim'},
@@ -173,9 +183,6 @@ require('lazy').setup({
       { '<leader>r', '<cmd>RainbowLevelsToggle<cr>' },
     },
   },
-  'ntpeters/vim-better-whitespace',
-  'andymass/vim-matchup',
-  'previm/previm',
   {
     'tyru/open-browser-github.vim',
     dependencies = { 'tyru/open-browser.vim' },
@@ -366,6 +373,13 @@ require('lazy').setup({
       vim.keymap.set('n', '<Leader>t', function() require("trouble").open() end)
     end,
   },
+  'tpope/vim-commentary',
+  'AndrewRadev/splitjoin.vim',
+  'ap/vim-css-color',
+  'junegunn/vim-peekaboo',
+  'ntpeters/vim-better-whitespace',
+  'andymass/vim-matchup',
+  'previm/previm',
   -- 'lpinilla/vim-codepainter',
   -- 'tpope/vim-unimpaired',
   -- 'dhruvasagar/vim-table-mode',
