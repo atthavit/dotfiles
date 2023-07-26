@@ -1,19 +1,3 @@
--- from https://github.com/golang/tools/blob/master/gopls/doc/vim.md#imports
--- function OrgImports(wait_ms)
--- 	local params = vim.lsp.util.make_range_params()
--- 	params.context = {only = {"source.organizeImports"}}
--- 	local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
--- 	for _, res in pairs(result or {}) do
--- 		for _, r in pairs(res.result or {}) do
--- 			if r.edit then
--- 				vim.lsp.util.apply_workspace_edit(r.edit)
--- 			else
--- 				vim.lsp.buf.execute_command(r.command)
--- 			end
--- 		end
--- 	end
--- end
-
 -- from
 -- https://github.com/neovim/nvim-lspconfig#suggested-configuration
 -- https://github.com/hrsh7th/nvim-cmp#setup
@@ -29,13 +13,15 @@ cmp.setup({
   mapping = {
     ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i','c'}),
+    ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i','c'}),
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ['<C-e>'] = cmp.mapping({
-    i = cmp.mapping.abort(),
-    c = cmp.mapping.close(),
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
     }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -69,6 +55,11 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
+
+require("mason").setup()
+require("mason-lspconfig").setup {
+  ensure_installed = { "golangci_lint_ls" },
+}
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require 'lspconfig'
@@ -157,7 +148,11 @@ require("trouble").setup({
   use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
 })
 
-require("mason").setup()
-require("mason-lspconfig").setup {
-  ensure_installed = { "golangci_lint_ls" },
-}
+require('go').setup()
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimport()
+  end,
+  group = vim.api.nvim_create_augroup("GoFormat", {}),
+})

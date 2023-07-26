@@ -9,7 +9,7 @@ Plug 'ap/vim-css-color'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'ray-x/go.nvim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -181,14 +181,6 @@ let g:gundo_prefer_python3 = 1
 
 " emmet-vim
 let g:user_emmet_leader_key='<Leader><Leader>'
-
-" vim-go
-autocmd Filetype go nmap <leader>cov :GoCoverageToggle<cr>
-let g:go_addtags_transform = 'snakecase'
-let g:go_def_mapping_enabled = 0
-let g:go_fmt_autosave= 0
-let g:go_gopls_enabled= 0
-let g:go_highlight_types = 0
 
 " rainbow
 map <leader>r :RainbowLevelsToggle<cr>
