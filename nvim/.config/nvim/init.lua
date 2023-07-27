@@ -108,6 +108,7 @@ require('lazy').setup({
   },
   {
     'ray-x/go.nvim',
+    enabled = false,
     dependencies = {  -- optional packages
       'ray-x/guihua.lua',
       'neovim/nvim-lspconfig',
@@ -125,6 +126,18 @@ require('lazy').setup({
         end,
         group = vim.api.nvim_create_augroup('GoFormat', {}),
       })
+    end,
+  },
+  {
+    'fatih/vim-go',
+    build = ':GoUpdateBinaries',
+    init = function()
+      vim.keymap.set('n', '<Leader>cov', ':GoCoverageToggle<cr>', opts)
+      vim.g.go_addtags_transform = 'snakecase'
+      vim.g.go_def_mapping_enabled = 0
+      vim.g.go_fmt_autosave= 0
+      vim.g.go_gopls_enabled= 0
+      vim.g.go_highlight_types = 0
     end,
   },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
