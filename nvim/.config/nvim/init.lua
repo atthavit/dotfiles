@@ -143,17 +143,20 @@ require('lazy').setup({
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   {
     'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'telescope-fzf-native.nvim' },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-fzf-native.nvim',
+    },
     config = function()
       local actions = require('telescope.actions')
       require('telescope').setup({
         extensions = {
           fzf = {
-              fuzzy = true,                    -- false will only do exact matching
-              override_generic_sorter = true,  -- override the generic sorter
-              override_file_sorter = true,     -- override the file sorter
-              case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-          }
+            fuzzy = true,                    -- false will only do exact matching
+            override_generic_sorter = true,  -- override the generic sorter
+            override_file_sorter = true,     -- override the file sorter
+            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+          },
         },
         defaults = {
           layout_strategy = 'vertical',
@@ -168,16 +171,19 @@ require('lazy').setup({
             },
           },
         },
+        pickers = {
+          grep_string = {
+            only_sort_text = true,
+          },
+        },
       })
-    end,
-    init = function()
       require('telescope').load_extension('fzf')
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<c-p>', builtin.git_files)
+      vim.keymap.set('n', '<c-p>', builtin.find_files)
       vim.keymap.set('n', '<leader>b', builtin.buffers)
       vim.keymap.set('n', '<c-o>', builtin.treesitter)
-      vim.keymap.set('n', '<leader>p', builtin.live_grep)
-      vim.api.nvim_create_user_command('Ag', builtin.live_grep, {})
+      vim.keymap.set('n', '<leader>p', builtin.grep_string)
+      vim.api.nvim_create_user_command('Ag', builtin.grep_string, {})
     end,
   },
   {
@@ -370,7 +376,7 @@ require('lazy').setup({
     opts = {
       label = {
         style = 'eol',
-        min_pattern_length = 2,
+        min_pattern_length = 3,
       },
       modes = {
         char = {
@@ -378,6 +384,9 @@ require('lazy').setup({
         },
       },
     },
+    init = function()
+      vim.keymap.set('n', '<Leader>/', require('flash').toggle)
+    end,
   },
   {
     'folke/trouble.nvim',
