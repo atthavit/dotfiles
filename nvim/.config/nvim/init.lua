@@ -20,6 +20,8 @@ vim.opt.mouse = 'c'
 vim.wo.wrap = false
 vim.wo.foldenable = false
 
+local opts = { noremap=true, silent=true }
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -207,6 +209,7 @@ require('lazy').setup({
     dependencies = { 'tyru/open-browser.vim' },
     init = function()
       vim.g.openbrowser_github_select_current_line = 1
+      vim.keymap.set('n', '<Leader>gh', ':OpenGithubFile<CR>', opts)
     end,
   },
   {
@@ -385,38 +388,52 @@ require('lazy').setup({
       },
     },
     init = function()
-      vim.keymap.set('n', '<Leader>/', require('flash').toggle)
+      vim.keymap.set('n', '<Leader>/', require('flash').toggle, opts)
     end,
   },
   {
     'folke/trouble.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     init = function()
-      vim.keymap.set('n', '<Leader>t', function() require("trouble").open() end)
+      vim.keymap.set('n', '<Leader>t', function() require('trouble').open() end, opts)
     end,
   },
-  'tpope/vim-commentary',
+  {
+    'folke/todo-comments.nvim',
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = true,
+    init = function()
+      vim.keymap.set('n', '<Leader>todo', ':TodoQuickFix<cr>', opts)
+    end,
+  },
   'AndrewRadev/splitjoin.vim',
-  'ap/vim-css-color',
   'junegunn/vim-peekaboo',
   'ntpeters/vim-better-whitespace',
   'andymass/vim-matchup',
   'previm/previm',
+  { 'stevearc/oil.nvim', config = true },
+  { 'numToStr/Comment.nvim', config = true },
+  {
+    'MisanthropicBit/decipher.nvim',
+    commit = '2533e35',
+    config = true,
+    init = function()
+      local decipher = require('decipher')
+      vim.keymap.set('v', '<leader>e64', function() decipher.encode_selection('base64') end)
+      vim.keymap.set('v', '<leader>d64', function() decipher.decode_selection('base64') end)
+    end,
+  },
+  {
+    'kylechui/nvim-surround',
+    config = true,
+  },
+  { 'NvChad/nvim-colorizer.lua', config = true },
   -- 'lpinilla/vim-codepainter',
   -- 'tpope/vim-unimpaired',
   -- 'dhruvasagar/vim-table-mode',
   -- { 'sjl/gundo.vim', cmd = 'GundoToggle' },
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'terraform',
-  callback = function()
-      vim.opt_local.sw = 2
-      vim.opt_local.ts = 2
-      vim.opt_local.sts = 2
-      vim.opt_local.commentstring = '#%s'
-  end,
-})
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'lua',
   callback = function()
@@ -426,14 +443,12 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-local opts = { noremap=true, silent=true }
 vim.keymap.set('c', 'w!!<cr>', ':w ! sudo tee % > /dev/null', opts)
 vim.keymap.set('c', '<Leader>d', '<C-R>=expand("%:p:h")."/"<CR>', opts)
 
 vim.keymap.set('n', '<Leader>w', ':update<CR>', opts)
 vim.keymap.set('n', '<Leader>q', ':q<CR>', opts)
 vim.keymap.set('n', '<Leader>f', ':Neoformat<CR>', opts)
-vim.keymap.set('n', '<Leader>gh', ':OpenGithubFile<CR>', opts)
 vim.keymap.set('n', '<Leader>md', ':PrevimOpen<CR>', opts)
 vim.keymap.set('n', '<space>', 'za', opts)
 vim.keymap.set('n', '<c-k>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
