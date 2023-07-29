@@ -42,6 +42,7 @@ require('lazy').setup({
     priority = 1000,
     opts = {
       contrast = 'dark',
+      transparent_mode = true,
     },
     init = function()
       vim.cmd([[colorscheme gruvbox]])
@@ -133,59 +134,15 @@ require('lazy').setup({
   {
     'fatih/vim-go',
     build = ':GoUpdateBinaries',
+    keys = {
+      { '<Leader>cov', ':GoCoverageToggle<cr>' },
+    },
     init = function()
-      vim.keymap.set('n', '<Leader>cov', ':GoCoverageToggle<cr>', opts)
       vim.g.go_addtags_transform = 'snakecase'
       vim.g.go_def_mapping_enabled = 0
       vim.g.go_fmt_autosave= 0
       vim.g.go_gopls_enabled= 0
       vim.g.go_highlight_types = 0
-    end,
-  },
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-  {
-    'nvim-telescope/telescope.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-fzf-native.nvim',
-    },
-    config = function()
-      local actions = require('telescope.actions')
-      require('telescope').setup({
-        extensions = {
-          fzf = {
-            fuzzy = true,                    -- false will only do exact matching
-            override_generic_sorter = true,  -- override the generic sorter
-            override_file_sorter = true,     -- override the file sorter
-            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-          },
-        },
-        defaults = {
-          layout_strategy = 'vertical',
-          layout_config = {
-            horizontal = { width = 0.90 },
-            vertical = { width = 0.90 },
-          },
-          mappings = {
-            i = {
-              ['<c-k>'] = actions.move_selection_previous,
-              ['<c-j>'] = actions.move_selection_next,
-            },
-          },
-        },
-        pickers = {
-          grep_string = {
-            only_sort_text = true,
-          },
-        },
-      })
-      require('telescope').load_extension('fzf')
-      local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<c-p>', builtin.find_files)
-      vim.keymap.set('n', '<leader>b', builtin.buffers)
-      vim.keymap.set('n', '<c-o>', builtin.treesitter)
-      vim.keymap.set('n', '<leader>p', builtin.grep_string)
-      vim.api.nvim_create_user_command('Ag', builtin.grep_string, {})
     end,
   },
   {
@@ -207,9 +164,11 @@ require('lazy').setup({
   {
     'tyru/open-browser-github.vim',
     dependencies = { 'tyru/open-browser.vim' },
+    keys = {
+      { '<Leader>gh', ':OpenGithubFile<CR>' },
+    },
     init = function()
       vim.g.openbrowser_github_select_current_line = 1
-      vim.keymap.set('n', '<Leader>gh', ':OpenGithubFile<CR>', opts)
     end,
   },
   {
@@ -286,7 +245,6 @@ require('lazy').setup({
           vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
           vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-          vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
           -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
           -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
           -- vim.keymap.set('n', '<space>wl', function()
@@ -359,6 +317,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     opts = {
       ensure_installed = { "go", "hcl", "yaml", "python", "json", "lua" },
+      auto_install = true,
       sync_install = false,
       highlight = {
         enable = true,
@@ -402,15 +361,18 @@ require('lazy').setup({
     'folke/todo-comments.nvim',
     dependencies = { "nvim-lua/plenary.nvim" },
     config = true,
-    init = function()
-      vim.keymap.set('n', '<Leader>todo', ':TodoQuickFix<cr>', opts)
-    end,
+    keys = {
+      { '<Leader>todo', ':TodoQuickFix<cr>' },
+    },
   },
   'AndrewRadev/splitjoin.vim',
   'junegunn/vim-peekaboo',
-  'ntpeters/vim-better-whitespace',
-  'andymass/vim-matchup',
-  'previm/previm',
+  {
+    'ntpeters/vim-better-whitespace',
+    init = function()
+      vim.g.better_whitespace_operator = ''
+    end
+  },
   { 'stevearc/oil.nvim', config = true },
   { 'numToStr/Comment.nvim', config = true },
   {
@@ -428,10 +390,98 @@ require('lazy').setup({
     config = true,
   },
   { 'NvChad/nvim-colorizer.lua', config = true },
-  -- 'lpinilla/vim-codepainter',
-  -- 'tpope/vim-unimpaired',
-  -- 'dhruvasagar/vim-table-mode',
-  -- { 'sjl/gundo.vim', cmd = 'GundoToggle' },
+  {
+    'j-hui/fidget.nvim',
+    tag = 'legacy',
+    event = 'LspAttach',
+    config = true,
+  },
+  {
+    'iamcco/markdown-preview.nvim',
+    build = function() vim.fn["mkdp#util#install"]() end,
+    config = true,
+    keys = {
+      { '<Leader>md', ':MarkdownPreviewToggle<CR>' },
+    },
+  },
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    opts = {
+      space_char_blankline = ' ',
+      show_current_context = true,
+    },
+  },
+	{
+		'nvim-pack/nvim-spectre',
+		dependencies = { 'nvim-lua/plenary.nvim' },
+    init = function()
+      vim.api.nvim_create_user_command('Replace', ':Spectre', {})
+    end,
+	},
+  {
+    'nvimdev/lspsaga.nvim',
+    commit = 'b1b43c1',
+    config = true,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      definition = {
+        keys = {
+          tabe = 't',
+          split = 'x',
+          vsplit = 'v',
+          close = '<esc>',
+        }
+      },
+      outline = {
+        keys = {
+          jump = '<cr>',
+        },
+      },
+    },
+    init = function()
+
+      vim.keymap.set('n', ']]', ':Lspsaga peek_definition<cr>')
+      vim.api.nvim_create_user_command('CodeAction', ':Lspsaga code_action', {})
+      vim.api.nvim_create_user_command('Rename', ':Lspsaga rename', {})
+      vim.api.nvim_create_user_command('Outline', ':Lspsaga outline', {})
+    end,
+  },
+  {
+    'ibhagwan/fzf-lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = true,
+    opts = {
+      winopts = {
+				height = 0.9,
+				width = 0.9,
+        preview = {
+          layout = 'vertical',
+          vertical = 'up:60%',
+        },
+      },
+			keymap = {
+				builtin = {
+					['<c-u>'] = 'preview-page-up',
+					['<c-d>'] = 'preview-page-down',
+				},
+			},
+    },
+    init = function()
+      local fzf = require('fzf-lua')
+      vim.keymap.set('n', '<c-p>', fzf.files)
+      vim.keymap.set('n', '<c-o>', fzf.lsp_live_workspace_symbols)
+      vim.keymap.set('n', '<leader>b', fzf.buffers)
+      vim.keymap.set('n', '<leader>p', fzf.live_grep)
+      vim.keymap.set('n', '<leader>gs', fzf.git_status)
+      vim.keymap.set('v', '<leader>p', fzf.grep_visual)
+      vim.api.nvim_create_user_command('Ag', fzf.live_grep, {})
+      vim.api.nvim_create_user_command('Maps', fzf.keymaps, {})
+      vim.api.nvim_create_user_command('Glog', fzf.git_bcommits, {})
+    end,
+  },
 })
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -448,8 +498,7 @@ vim.keymap.set('c', '<Leader>d', '<C-R>=expand("%:p:h")."/"<CR>', opts)
 
 vim.keymap.set('n', '<Leader>w', ':update<CR>', opts)
 vim.keymap.set('n', '<Leader>q', ':q<CR>', opts)
-vim.keymap.set('n', '<Leader>f', ':Neoformat<CR>', opts)
-vim.keymap.set('n', '<Leader>md', ':PrevimOpen<CR>', opts)
+vim.keymap.set('n', '<Leader>l', ':Lazy<CR>', opts)
 vim.keymap.set('n', '<space>', 'za', opts)
 vim.keymap.set('n', '<c-k>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 vim.keymap.set('n', '<c-j>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
