@@ -203,6 +203,7 @@ require('lazy').setup({
           { name = 'vsnip' },
         }, {
           { name = 'buffer' },
+          { name = 'path' },
         })
       })
     end,
@@ -366,7 +367,6 @@ require('lazy').setup({
     },
   },
   'AndrewRadev/splitjoin.vim',
-  'junegunn/vim-peekaboo',
   {
     'ntpeters/vim-better-whitespace',
     init = function()
@@ -477,9 +477,25 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>p', fzf.live_grep)
       vim.keymap.set('n', '<leader>gs', fzf.git_status)
       vim.keymap.set('v', '<leader>p', fzf.grep_visual)
+      vim.keymap.set('n', '<leader>`', fzf.marks)
+      vim.keymap.set('n', "<leader>'", fzf.marks)
       vim.api.nvim_create_user_command('Ag', fzf.live_grep, {})
       vim.api.nvim_create_user_command('Maps', fzf.keymaps, {})
       vim.api.nvim_create_user_command('Glog', fzf.git_bcommits, {})
+    end,
+  },
+  {
+    'folke/which-key.nvim',
+    event = "VeryLazy",
+    opts = {
+      ignore_missing = true,
+      plugins = {
+        presets = false
+      },
+    },
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
     end,
   },
 })
@@ -509,3 +525,5 @@ vim.keymap.set('n', 'q:', '<nop>', opts)
 vim.keymap.set('i', '<c-space>', '<c-x><c-o>', opts)
 
 vim.g.omni_sql_no_default_maps = 1
+
+vim.keymap.set({'n', 'v', 'i'}, '\'', '`', {remap=true})
