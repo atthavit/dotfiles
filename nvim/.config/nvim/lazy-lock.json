@@ -1,6 +1,7 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "176e85eeb63f1a5970d6b88f1725039d85ca0055" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
+  "cmp-snippy": { "branch": "master", "commit": "c4dc31232c510cd32d4708701e6f06746d46df90" },
   "decipher.nvim": { "branch": "master", "commit": "2533e3573cc7f0ab546bf7d7cda7be61240ee266" },
   "emmet-vim": { "branch": "master", "commit": "def5d57a1ae5afb1b96ebe83c4652d1c03640f4d" },
   "fidget.nvim": { "branch": "main", "commit": "0ba1e16d07627532b6cae915cc992ecac249fb97" },
@@ -19,6 +20,7 @@
   "nvim-cmp": { "branch": "main", "commit": "c4e491a87eeacf0408902c32f031d802c7eafce8" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "dde3084106a70b9a79d48f426f6d6fec6fd203f7" },
   "nvim-lspconfig": { "branch": "master", "commit": "b6091272422bb0fbd729f7f5d17a56d37499c54f" },
+  "nvim-snippy": { "branch": "master", "commit": "7b50933b44ebefc85bf1734eadc4fcfcbbc781c7" },
   "nvim-spectre": { "branch": "master", "commit": "3ba6edeea1390457caaf73e96ab9c086ff6f90e9" },
   "nvim-surround": { "branch": "main", "commit": "10b20ca7d9da1ac8df8339e140ffef94f9ab3b18" },
   "nvim-treesitter": { "branch": "master", "commit": "ee107fc759647293a84ad42b867f518331364fbe" },

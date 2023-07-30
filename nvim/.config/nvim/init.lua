@@ -20,6 +20,7 @@ vim.opt.mouse = 'c'
 vim.wo.wrap = false
 vim.wo.foldenable = false
 
+
 local opts = { noremap=true, silent=true }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -134,10 +135,9 @@ require('lazy').setup({
   {
     'fatih/vim-go',
     build = ':GoUpdateBinaries',
-    keys = {
-      { '<Leader>cov', ':GoCoverageToggle<cr>' },
-    },
+    ft = {'go', 'gomod'},
     init = function()
+      vim.keymap.set('n', '<leader>cov', ':GoCoverageToggle<cr>', opts)
       vim.g.go_addtags_transform = 'snakecase'
       vim.g.go_def_mapping_enabled = 0
       vim.g.go_fmt_autosave= 0
@@ -175,36 +175,36 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/vim-vsnip',
+      'nvim-snippy',
     },
     config = function()
       local cmp = require('cmp')
       cmp.setup({
+        preselect = cmp.PreselectMode.None,
         snippet = {
           expand = function(args)
-          vim.fn["vsnip#anonymous"](args.body)
+            require('snippy').expand_snippet(args.body)
           end,
         },
         mapping = {
-          ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-          ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+          ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+          ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
           ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i','c'}),
           ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i','c'}),
-          ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-          ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+          ['<C-Space>'] = cmp.config.disable,
+          ['<C-y>'] = cmp.config.disable,
           ['<C-e>'] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
           }),
-          ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
         },
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
-          { name = 'vsnip' },
-        }, {
+          { name = 'snippy' },
           { name = 'buffer' },
           { name = 'path' },
-        })
+        }),
       })
     end,
   },
@@ -498,6 +498,23 @@ require('lazy').setup({
       vim.o.timeoutlen = 300
     end,
   },
+  {
+    'dcampos/nvim-snippy',
+    dependencies = { 'dcampos/cmp-snippy' },
+    opts = {
+      mappings = {
+        is = {
+          ['<Tab>'] = 'expand_or_advance',
+          ['<S-Tab>'] = 'previous',
+          ['<c-j>'] = 'expand_or_advance',
+          ['<c-k>'] = 'previous',
+        },
+        nx = {
+          ['<leader>c'] = 'cut_text',
+        },
+      },
+    },
+  },
 })
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -514,6 +531,7 @@ vim.keymap.set('c', '<Leader>d', '<C-R>=expand("%:p:h")."/"<CR>', opts)
 
 vim.keymap.set('n', '<Leader>w', ':update<CR>', opts)
 vim.keymap.set('n', '<Leader>q', ':q<CR>', opts)
+vim.keymap.set('n', '<Leader>Q', ':q!<CR>', opts)
 vim.keymap.set('n', '<Leader>l', ':Lazy<CR>', opts)
 vim.keymap.set('n', '<space>', 'za', opts)
 vim.keymap.set('n', '<c-k>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
