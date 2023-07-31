@@ -58,6 +58,10 @@ require('lazy').setup({
         section_separators = '',
         component_separators = '',
       },
+      sections = {
+        lualine_b = {'diff', 'diagnostics'},
+        lualine_c = { { 'filename', path = 1, } },
+      },
     },
   },
   {
@@ -151,7 +155,7 @@ require('lazy').setup({
     init = function()
       local config = require("gruvbox").config
       local colors = require("gruvbox.palette").get_base_colors(vim.o.background, config.contrast)
-      vim.cmd('hi IlluminatedWordText guibg=' .. colors.bg1 .. ' gui=bold')
+      vim.cmd('hi IlluminatedWordText guibg=' .. colors.bg1)
     end,
   },
   {
@@ -436,6 +440,7 @@ require('lazy').setup({
         }
       },
       outline = {
+        win_width = 70,
         keys = {
           jump = '<cr>',
         },
