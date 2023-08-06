@@ -549,4 +549,4 @@ vim.keymap.set('i', '<c-space>', '<c-x><c-o>', opts)
 
 vim.g.omni_sql_no_default_maps = 1
 
-vim.keymap.set({'n', 'v', 'i'}, '\'', '`', {remap=true})
+vim.keymap.set({'n', 'v'}, '\'', '`', {remap=true})
