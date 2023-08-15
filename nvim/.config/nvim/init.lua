@@ -114,6 +114,7 @@ require('lazy').setup({
       end
     },
   },
+  { 'tpope/vim-fugitive' },
   {
     'ray-x/go.nvim',
     enabled = false,
@@ -320,6 +321,7 @@ require('lazy').setup({
   { 'ray-x/lsp_signature.nvim', config = true },
   {
     'nvim-treesitter/nvim-treesitter',
+    version = false,
     opts = {
       ensure_installed = { "go", "hcl", "yaml", "python", "json", "lua" },
       auto_install = true,
@@ -332,6 +334,9 @@ require('lazy').setup({
         enable = true,
       },
     },
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
+    end,
     init = function()
       vim.opt.foldmethod = 'expr'
       vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
