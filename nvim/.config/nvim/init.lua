@@ -284,7 +284,7 @@ require('lazy').setup({
         'terraformls',
         'tsserver',
         'tsserver',
-        'vuels',
+        'volar',
         'yamlls',
       }
       for _, lsp in ipairs(servers) do
@@ -449,6 +449,9 @@ require('lazy').setup({
         keys = {
           jump = '<cr>',
         },
+      },
+      lightbulb = {
+        enable = false,
       },
     },
     init = function()
