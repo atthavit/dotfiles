@@ -14,6 +14,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias l='ls -FG'
     alias ll='\ls -lhFG'
 else
+    alias open='xdg-open &>/dev/null'
     alias l='ls -F --color'
     alias ll='\ls -lh --group-directories-first --color'
     alias ls='ls --color'
