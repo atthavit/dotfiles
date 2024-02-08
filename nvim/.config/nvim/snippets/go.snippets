@@ -13,7 +13,12 @@ snippet if
 
 snippet iferr
 	if err != nil {
-		return fmt.Errorf("%s: ${1}", err)
+		return err
+	}
+
+snippet iferrf
+	if err != nil {
+		return fmt.Errorf("${1:%s}", err)
 	}
 
 snippet iferr=
@@ -21,7 +26,7 @@ snippet iferr=
 		return fmt.Errorf("%s: ${1}", err)
 	}
 
-snippet ifpanic
+snippet iffatal
 	if err != nil {
 		log.Fatal(${1:err})
 	}

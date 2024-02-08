@@ -150,15 +150,15 @@ require('lazy').setup({
       vim.g.go_highlight_types = 0
     end,
   },
-  {
-    'RRethy/vim-illuminate',
-    dependencies = {'gruvbox.nvim'},
-    init = function()
-      local config = require("gruvbox").config
-      local colors = require("gruvbox.palette").get_base_colors(vim.o.background, config.contrast)
-      vim.cmd('hi IlluminatedWordText guibg=' .. colors.bg1)
-    end,
-  },
+  -- {
+  --   'RRethy/vim-illuminate',
+  --   dependencies = {'gruvbox.nvim'},
+  --   init = function()
+  --     local config = require("gruvbox").config
+  --     local colors = require("gruvbox.palette").get_base_colors(vim.o.background, config.contrast)
+  --     vim.cmd('hi IlluminatedWordText guibg=' .. colors.bg1)
+  --   end,
+  -- },
   {
     'thiagoalessio/rainbow_levels.vim',
     cmd = 'RainbowLevelsToggle',
@@ -180,6 +180,9 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-emoji',
       'nvim-snippy',
     },
     config = function()
@@ -209,6 +212,7 @@ require('lazy').setup({
           { name = 'snippy' },
           { name = 'buffer' },
           { name = 'path' },
+          { name = 'emoji' },
         }),
       })
     end,
@@ -371,9 +375,6 @@ require('lazy').setup({
     'folke/todo-comments.nvim',
     dependencies = { "nvim-lua/plenary.nvim" },
     config = true,
-    keys = {
-      { '<Leader>todo', ':TodoQuickFix<cr>' },
-    },
   },
   'AndrewRadev/splitjoin.vim',
   {
@@ -415,13 +416,13 @@ require('lazy').setup({
   },
   {
     'lukas-reineke/indent-blankline.nvim',
+    main = "ibl",
     opts = {
-      space_char_blankline = ' ',
-      show_current_context = true,
+      scope = { enabled = false },
     },
   },
-	{
-		'nvim-pack/nvim-spectre',
+  {
+    'nvim-pack/nvim-spectre',
 		dependencies = { 'nvim-lua/plenary.nvim' },
     init = function()
       vim.api.nvim_create_user_command('Replace', ':Spectre', {})
@@ -436,6 +437,9 @@ require('lazy').setup({
       'nvim-tree/nvim-web-devicons',
     },
     opts = {
+      symbol_in_winbar = {
+        enable = false,
+      },
       definition = {
         keys = {
           tabe = 't',
@@ -443,12 +447,6 @@ require('lazy').setup({
           vsplit = 'v',
           close = '<esc>',
         }
-      },
-      outline = {
-        win_width = 70,
-        keys = {
-          jump = '<cr>',
-        },
       },
       lightbulb = {
         enable = false,
