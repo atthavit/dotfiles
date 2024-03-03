@@ -65,9 +65,9 @@ require('lazy').setup({
     },
   },
   {
-    'mattn/emmet-vim',
-    init = function()
-      vim.g.user_emmet_leader_key = '<leader><leader>'
+    'olrtg/nvim-emmet',
+    config = function()
+      vim.keymap.set({ 'n', 'v' }, '<leader><leader>,', require('nvim-emmet').wrap_with_abbreviation)
     end,
   },
   {
@@ -226,7 +226,66 @@ require('lazy').setup({
     dependencies = { 'mason.nvim' },
     opts = {
       automatic_installation = true,
+      ensure_installed = {
+        'bashls',
+        'bufls',
+        'docker_compose_language_service',
+        'dockerls',
+        'emmet_language_server',
+        'eslint',
+        'golangci_lint_ls',
+        'graphql',
+        'html',
+        'jsonls',
+        'lua_ls',
+        'marksman',
+        'sqlls',
+        'taplo',
+        'terraformls',
+        'tsserver',
+        'volar',
+        'yamlls',
+      },
     },
+    config = function(_, opts)
+      require('mason-lspconfig').setup(opts)
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local lspconfig = require('lspconfig')
+      require('mason-lspconfig').setup_handlers {
+        function (server_name)
+          lspconfig[server_name].setup {}
+        end,
+
+        ['gopls'] = function()
+          lspconfig['gopls'].setup {
+            capabilities = capabilities,
+            settings = {
+              gopls = {
+                analyses = {
+                  composites = false,
+                },
+              },
+            },
+          }
+        end,
+
+        ['pyright'] = function(server_name)
+          lspconfig[server_name].setup {
+            capabilities = capabilities,
+            settings = {
+              python = {
+                analysis = {
+                  autoSearchPaths = true,
+                  diagnosticMode = 'workspace',
+                  typeCheckingMode = 'off',
+                }
+              }
+            },
+          }
+        end,
+
+      }
+    end,
   },
   {
     'neovim/nvim-lspconfig',
@@ -269,57 +328,6 @@ require('lazy').setup({
           end, opts)
         end,
       })
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local lspconfig = require('lspconfig')
-      local servers = {
-        'bashls',
-        'bufls',
-        'docker_compose_language_service',
-        'dockerls',
-        'eslint',
-        'golangci_lint_ls',
-        'graphql',
-        'html',
-        'jsonls',
-        'lua_ls',
-        'marksman',
-        'sqlls',
-        'taplo',
-        'terraformls',
-        'tsserver',
-        'tsserver',
-        'volar',
-        'yamlls',
-      }
-      for _, lsp in ipairs(servers) do
-        lspconfig[lsp].setup {
-          capabilities = capabilities,
-        }
-      end
-
-      lspconfig.gopls.setup {
-        capabilities = capabilities,
-        settings = {
-          gopls = {
-            analyses = {
-              composites = false,
-            },
-          },
-        },
-      }
-
-      lspconfig.pyright.setup {
-        capabilities = capabilities,
-        settings = {
-          python = {
-            analysis = {
-              autoSearchPaths = true,
-              diagnosticMode = 'workspace',
-              typeCheckingMode = 'off',
-            }
-          }
-        },
-      }
     end,
   },
   { 'ray-x/lsp_signature.nvim', config = true },
