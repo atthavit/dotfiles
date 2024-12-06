@@ -65,12 +65,6 @@ require('lazy').setup({
     },
   },
   {
-    'olrtg/nvim-emmet',
-    config = function()
-      vim.keymap.set({ 'n', 'v' }, '<leader><leader>,', require('nvim-emmet').wrap_with_abbreviation)
-    end,
-  },
-  {
     'lewis6991/gitsigns.nvim',
     opts = {
       on_attach = function(bufnr)
@@ -115,10 +109,10 @@ require('lazy').setup({
     },
   },
   { 'tpope/vim-fugitive' },
+  { 'tpope/vim-sleuth' },
   {
     'ray-x/go.nvim',
-    enabled = false,
-    dependencies = {  -- optional packages
+    dependencies = {
       'ray-x/guihua.lua',
       'neovim/nvim-lspconfig',
       'nvim-treesitter/nvim-treesitter',
@@ -128,26 +122,14 @@ require('lazy').setup({
     ft = {'go', 'gomod'},
     build = ':lua require("go.install").update_all_sync()',
     init = function()
+      local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
       vim.api.nvim_create_autocmd('BufWritePre', {
         pattern = '*.go',
         callback = function()
-         require('go.format').goimport()
+         require('go.format').goimports()
         end,
-        group = vim.api.nvim_create_augroup('GoFormat', {}),
+        group = format_sync_grp,
       })
-    end,
-  },
-  {
-    'fatih/vim-go',
-    build = ':GoUpdateBinaries',
-    ft = {'go', 'gomod'},
-    init = function()
-      vim.keymap.set('n', '<leader>cov', ':GoCoverageToggle<cr>', opts)
-      vim.g.go_addtags_transform = 'snakecase'
-      vim.g.go_def_mapping_enabled = 0
-      vim.g.go_fmt_autosave= 0
-      vim.g.go_gopls_enabled= 0
-      vim.g.go_highlight_types = 0
     end,
   },
   -- {
@@ -256,11 +238,23 @@ require('lazy').setup({
           lspconfig[server_name].setup {}
         end,
 
+        ['cssls'] = function(server_name)
+          local capabilities = vim.lsp.protocol.make_client_capabilities()
+          capabilities.textDocument.completion.completionItem.snippetSupport = true
+          lspconfig[server_name].setup {
+            capabilities = capabilities,
+            settings = {
+              filetypes = { "css", "scss", "less", "javascript" }
+            }
+          }
+        end,
+
         ['gopls'] = function()
           lspconfig['gopls'].setup {
             capabilities = capabilities,
             settings = {
               gopls = {
+                usePlaceholders = true,
                 analyses = {
                   composites = false,
                 },
@@ -313,17 +307,17 @@ require('lazy').setup({
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
           vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+          -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
           -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
           -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
           -- vim.keymap.set('n', '<space>wl', function()
           --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
           -- end, opts)
-          vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-          vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-          vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-          vim.keymap.set('n', '<space>f', function()
+          vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+          vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+          vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+          -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+          vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
             vim.lsp.buf.format { async = true }
           end, opts)
         end,
@@ -335,7 +329,17 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     version = false,
     opts = {
-      ensure_installed = { "go", "hcl", "yaml", "python", "json", "lua" },
+      ensure_installed = {
+        "css",
+        "go",
+        "hcl",
+        "json",
+        "lua",
+        "python",
+        "regex",
+        "styled",
+        "yaml",
+      },
       auto_install = true,
       sync_install = false,
       highlight = {
@@ -345,6 +349,12 @@ require('lazy').setup({
       matchup = {
         enable = true,
       },
+      indent = {
+        enable = false,
+      },
+      yati = {
+        enable = true,
+      }
     },
     config = function(_, opts)
       require('nvim-treesitter.configs').setup(opts)
@@ -377,6 +387,9 @@ require('lazy').setup({
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     init = function()
       vim.keymap.set('n', '<Leader>t', function() require('trouble').open() end, opts)
+      vim.keymap.set('n', '<Leader>tq', function() require('trouble').open() end, opts)
+      vim.keymap.set('n', 'gi', function() require('trouble').open('lsp_implementations') end, opts)
+      vim.keymap.set('n', 'gr', function() require('trouble').open('lsp_references') end, opts)
     end,
   },
   {
@@ -504,20 +517,6 @@ require('lazy').setup({
     end,
   },
   {
-    'folke/which-key.nvim',
-    event = "VeryLazy",
-    opts = {
-      ignore_missing = true,
-      plugins = {
-        presets = false
-      },
-    },
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-  },
-  {
     'dcampos/nvim-snippy',
     dependencies = { 'dcampos/cmp-snippy' },
     opts = {
@@ -534,10 +533,79 @@ require('lazy').setup({
       },
     },
   },
+  {
+    "scalameta/nvim-metals",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    ft = { "scala", "sbt", "java" },
+    opts = function()
+      local metals_config = require("metals").bare_config()
+      metals_config.on_attach = function(client, bufnr)
+        -- your on_attach function
+      end
+
+      return metals_config
+    end,
+    config = function(self, metals_config)
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = self.ft,
+        callback = function()
+          require("metals").initialize_or_attach(metals_config)
+        end,
+        group = nvim_metals_group,
+      })
+    end
+  },
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      background_colour = "#000000",
+    },
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      lsp = {
+        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+        },
+      },
+      -- you can enable a preset for easier configuration
+      presets = {
+        bottom_search = true, -- use a classic bottom cmdline for search
+        command_palette = true, -- position the cmdline and popupmenu together
+        long_message_to_split = true, -- long messages will be sent to a split
+        inc_rename = false, -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = false, -- add a border to hover docs and signature help
+      },
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+      }
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    config = true,
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+  },
+  {
+    "yioneko/nvim-yati",
+  },
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'lua',
+  pattern = 'javascript,lua,html,css',
   callback = function()
       vim.opt_local.sw = 2
       vim.opt_local.ts = 2
