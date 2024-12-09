@@ -41,6 +41,7 @@
   "open-browser.vim": { "branch": "master", "commit": "7d4c1d8198e889d513a030b5a83faa07606bac27" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "rainbow_levels.vim": { "branch": "main", "commit": "e8badb7906b63d3639b840484e4370194de2b857" },
+  "refactoring.nvim": { "branch": "master", "commit": "2db6d378e873de31d18ade549c2edba64ff1c2e3" },
   "splitjoin.vim": { "branch": "main", "commit": "dfd979d34d29e49478562f599609a12ae3b15fd4" },
   "todo-comments.nvim": { "branch": "main", "commit": "96fee098a90e7c09c9811aa7df71d773ba8b9b53" },
   "trouble.nvim": { "branch": "main", "commit": "40c5317a6e90fe3393f07b0fee580d9e93a216b4" },

@@ -249,19 +249,20 @@ require('lazy').setup({
           }
         end,
 
-        ['gopls'] = function()
-          lspconfig['gopls'].setup {
-            capabilities = capabilities,
-            settings = {
-              gopls = {
-                usePlaceholders = true,
-                analyses = {
-                  composites = false,
-                },
-              },
-            },
-          }
-        end,
+        -- use ray-x/go.nvim instead
+        -- ['gopls'] = function()
+        --   lspconfig['gopls'].setup {
+        --     capabilities = capabilities,
+        --     settings = {
+        --       gopls = {
+        --         usePlaceholders = true,
+        --         analyses = {
+        --           composites = false,
+        --         },
+        --       },
+        --     },
+        --   }
+        -- end,
 
         ['pyright'] = function(server_name)
           lspconfig[server_name].setup {
@@ -563,6 +564,9 @@ require('lazy').setup({
     opts = {
       background_colour = "#000000",
     },
+    keys = {
+      { '<Leader><esc>', function() require('notify').dismiss() end }
+    },
   },
   {
     "folke/noice.nvim",
@@ -601,6 +605,17 @@ require('lazy').setup({
   },
   {
     "yioneko/nvim-yati",
+  },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    lazy = false,
+    config = function()
+      require("refactoring").setup()
+    end,
   },
 })
 
