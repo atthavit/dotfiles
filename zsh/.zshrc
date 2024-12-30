@@ -155,3 +155,7 @@ export TF_CLI_ARGS_apply="-parallelism=100"
 
 . $HOME/.asdf/asdf.sh
 . "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(atuin gen-completions --shell zsh)"
