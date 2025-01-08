@@ -210,7 +210,7 @@ require('lazy').setup({
       automatic_installation = true,
       ensure_installed = {
         'bashls',
-        'bufls',
+        'buf_ls',
         'docker_compose_language_service',
         'dockerls',
         'emmet_language_server',
@@ -224,7 +224,7 @@ require('lazy').setup({
         'sqlls',
         'taplo',
         'terraformls',
-        'tsserver',
+        'ts_ls',
         'volar',
         'yamlls',
       },
