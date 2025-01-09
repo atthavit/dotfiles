@@ -21,8 +21,6 @@ vim.wo.wrap = false
 vim.wo.foldenable = false
 
 
-local opts = { noremap=true, silent=true }
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -52,17 +50,26 @@ require('lazy').setup({
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {
-      options = {
-        -- icons_enabled = false,
-        section_separators = '',
-        component_separators = '',
-      },
-      sections = {
-        lualine_b = {'diff', 'diagnostics'},
-        lualine_c = { { 'filename', path = 1, } },
-      },
-    },
+    config = function()
+      require('lualine').setup({
+        options = {
+          -- icons_enabled = false,
+          section_separators = '',
+          component_separators = '',
+        },
+        sections = {
+          lualine_b = { 'diff', 'diagnostics' },
+          lualine_c = { { 'filename', path = 1, } },
+          lualine_a = {
+            {
+              require("noice").api.statusline.mode.get,
+              cond = require("noice").api.statusline.mode.has,
+            },
+            'mode',
+          },
+        },
+      })
+    end,
   },
   {
     'lewis6991/gitsigns.nvim',
@@ -81,30 +88,30 @@ require('lazy').setup({
           if vim.wo.diff then return ']c' end
           vim.schedule(function() gs.next_hunk() end)
           return '<Ignore>'
-        end, {expr=true})
+        end, { expr = true })
 
         map('n', '[c', function()
           if vim.wo.diff then return '[c' end
           vim.schedule(function() gs.prev_hunk() end)
           return '<Ignore>'
-        end, {expr=true})
+        end, { expr = true })
 
         -- Actions
         map('n', '<leader>hs', gs.stage_hunk)
         map('n', '<leader>hS', gs.stage_buffer)
-        map('v', '<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+        map('v', '<leader>hs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
         map('n', '<leader>hu', gs.reset_hunk)
         map('n', '<leader>hU', gs.reset_buffer)
-        map('v', '<leader>hu', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+        map('v', '<leader>hu', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
         map('n', '<leader>hp', gs.preview_hunk)
-        map('n', '<leader>hb', function() gs.blame_line{full=true} end)
+        map('n', '<leader>hb', function() gs.blame_line { full = true } end)
         map('n', '<leader>tb', gs.toggle_current_line_blame)
         map('n', '<leader>hd', gs.diffthis)
         map('n', '<leader>hD', function() gs.diffthis('~') end)
         map('n', '<leader>td', gs.toggle_deleted)
 
         -- Text object
-        map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
       end
     },
   },
@@ -119,18 +126,8 @@ require('lazy').setup({
     },
     config = true,
     event = { 'CmdlineEnter' },
-    ft = {'go', 'gomod'},
+    ft = { 'go', 'gomod' },
     build = ':lua require("go.install").update_all_sync()',
-    init = function()
-      local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        pattern = '*.go',
-        callback = function()
-         require('go.format').goimports()
-        end,
-        group = format_sync_grp,
-      })
-    end,
   },
   -- {
   --   'RRethy/vim-illuminate',
@@ -179,8 +176,8 @@ require('lazy').setup({
         mapping = {
           ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
           ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-          ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i','c'}),
-          ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i','c'}),
+          ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+          ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
           ['<C-Space>'] = cmp.config.disable,
           ['<C-y>'] = cmp.config.disable,
           ['<C-e>'] = cmp.mapping({
@@ -234,7 +231,7 @@ require('lazy').setup({
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require('lspconfig')
       require('mason-lspconfig').setup_handlers {
-        function (server_name)
+        function(server_name)
           lspconfig[server_name].setup {}
         end,
 
@@ -318,9 +315,6 @@ require('lazy').setup({
           vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
           vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
           -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-          vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
-            vim.lsp.buf.format { async = true }
-          end, opts)
         end,
       })
     end,
@@ -405,8 +399,8 @@ require('lazy').setup({
       vim.g.better_whitespace_operator = ''
     end
   },
-  { 'stevearc/oil.nvim', config = true },
-  { 'numToStr/Comment.nvim', config = true },
+  { 'stevearc/oil.nvim',        config = true },
+  { 'numToStr/Comment.nvim',    config = true },
   {
     'MisanthropicBit/decipher.nvim',
     commit = '2533e35',
@@ -445,11 +439,11 @@ require('lazy').setup({
   },
   {
     'nvim-pack/nvim-spectre',
-		dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = { 'nvim-lua/plenary.nvim' },
     init = function()
       vim.api.nvim_create_user_command('Replace', ':Spectre', {})
     end,
-	},
+  },
   {
     'nvimdev/lspsaga.nvim',
     commit = 'b1b43c1',
@@ -475,7 +469,6 @@ require('lazy').setup({
       },
     },
     init = function()
-
       vim.keymap.set('n', ']]', ':Lspsaga peek_definition<cr>')
       vim.api.nvim_create_user_command('CodeAction', ':Lspsaga code_action', {})
       vim.api.nvim_create_user_command('Rename', ':Lspsaga rename', {})
@@ -488,24 +481,25 @@ require('lazy').setup({
     config = true,
     opts = {
       winopts = {
-				height = 0.9,
-				width = 0.9,
+        height = 0.9,
+        width = 0.9,
         preview = {
           layout = 'vertical',
           vertical = 'up:60%',
         },
       },
-			keymap = {
-				builtin = {
-					['<c-u>'] = 'preview-page-up',
-					['<c-d>'] = 'preview-page-down',
-				},
-			},
+      keymap = {
+        builtin = {
+          ['<c-u>'] = 'preview-page-up',
+          ['<c-d>'] = 'preview-page-down',
+        },
+      },
     },
     init = function()
       local fzf = require('fzf-lua')
       vim.keymap.set('n', '<c-p>', fzf.files)
       vim.keymap.set('n', '<c-o>', fzf.lsp_live_workspace_symbols)
+      vim.keymap.set('n', "<c-s-f>", fzf.live_grep)
       vim.keymap.set('n', '<leader>b', fzf.buffers)
       vim.keymap.set('n', '<leader>p', fzf.live_grep)
       vim.keymap.set('n', '<leader>gs', fzf.git_status)
@@ -582,17 +576,17 @@ require('lazy').setup({
       },
       -- you can enable a preset for easier configuration
       presets = {
-        bottom_search = true, -- use a classic bottom cmdline for search
-        command_palette = true, -- position the cmdline and popupmenu together
+        bottom_search = true,         -- use a classic bottom cmdline for search
+        command_palette = true,       -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
+        inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = false,       -- add a border to hover docs and signature help
       },
     },
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
-      }
+    }
   },
   {
     "windwp/nvim-ts-autotag",
@@ -617,17 +611,57 @@ require('lazy').setup({
       require("refactoring").setup()
     end,
   },
+  {
+    "stevearc/conform.nvim",
+    lazy = false,
+    opts = {
+      default_format_opts = {
+        lsp_format = "fallback",
+      },
+      format_after_save = function(bufnr)
+        local enabled_filetypes = { "go", "gomod" }
+        if vim.tbl_contains(enabled_filetypes, vim.bo[bufnr].filetype) then
+          return { lsp_format = "fallback" }
+        end
+      end,
+      formatters_by_ft = {
+        go = { "goimports", "gofmt" },
+        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { "prettierd", "prettier", stop_after_first = true },
+        javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+        typescript = { "prettierd", "prettier", stop_after_first = true },
+        vue = { "prettierd", "prettier", stop_after_first = true },
+        css = { "prettierd", "prettier", stop_after_first = true },
+        scss = { "prettierd", "prettier", stop_after_first = true },
+        less = { "prettierd", "prettier", stop_after_first = true },
+        html = { "prettierd", "prettier", stop_after_first = true },
+        yaml = { "prettierd", "prettier", stop_after_first = true },
+        markdown = { "prettierd", "prettier", stop_after_first = true },
+        graphql = { "prettierd", "prettier", stop_after_first = true },
+      },
+    },
+    keys = {
+      {
+        "<leader>f",
+        function()
+          require("conform").format()
+        end,
+        mode = { "n", "v" },
+      },
+    },
+  },
 })
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'javascript,lua,html,css',
   callback = function()
-      vim.opt_local.sw = 2
-      vim.opt_local.ts = 2
-      vim.opt_local.sts = 2
+    vim.opt_local.sw = 2
+    vim.opt_local.ts = 2
+    vim.opt_local.sts = 2
   end,
 })
 
+local opts = { noremap = true, silent = true }
 vim.keymap.set('c', 'w!!<cr>', ':w ! sudo tee % > /dev/null', opts)
 vim.keymap.set('c', '<Leader>d', '<C-R>=expand("%:p:h")."/"<CR>', opts)
 
@@ -646,4 +680,4 @@ vim.keymap.set('i', '<c-space>', '<c-x><c-o>', opts)
 
 vim.g.omni_sql_no_default_maps = 1
 
-vim.keymap.set({'n', 'v'}, '\'', '`', {remap=true})
+vim.keymap.set({ 'n', 'v' }, '\'', '`', { remap = true })

@@ -9,14 +9,8 @@ stow tmux
 stow nvim
 stow zsh
 stow direnv
-mkdir ~/.gnupg && stow gpg
 ...
 ```
-
-nvim
-==============
-* install [nerdfonts](https://www.nerdfonts.com/font-downloads)
-
 
 tmux
 ====
