@@ -33,3 +33,12 @@ unfocused-split-opacity=0.9
 # keybind = ctrl+b>ctrl+right=move_tab:1
 keybind = ctrl+shift+l=clear_screen
 keybind = ctrl+enter=unbind
+keybind = alt+one=unbind
+keybind = alt+two=unbind
+keybind = alt+three=unbind
+keybind = alt+four=unbind
+keybind = alt+five=unbind
+keybind = alt+six=unbind
+keybind = alt+seven=unbind
+keybind = alt+eight=unbind
+keybind = alt+nine=unbind
