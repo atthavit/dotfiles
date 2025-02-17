@@ -124,6 +124,9 @@ require('lazy').setup({
       'neovim/nvim-lspconfig',
       'nvim-treesitter/nvim-treesitter',
     },
+    opts = {
+      tag_options = '',
+    },
     config = true,
     event = { 'CmdlineEnter' },
     ft = { 'go', 'gomod' },
@@ -423,12 +426,16 @@ require('lazy').setup({
     config = true,
   },
   {
-    'iamcco/markdown-preview.nvim',
-    build = function() vim.fn["mkdp#util#install"]() end,
-    config = true,
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && npm install && git restore .",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
     keys = {
       { '<Leader>md', ':MarkdownPreviewToggle<CR>' },
     },
+    ft = { "markdown" },
   },
   {
     'lukas-reineke/indent-blankline.nvim',

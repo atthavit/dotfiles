@@ -85,6 +85,7 @@ export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
 export PATH="$HOME/.mix/escripts:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="/usr/local/flutter/bin:$PATH"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 if [ "$macos" = true ]; then
     export PATH="$HOME/Library/Python/3.8/bin:$PATH"
@@ -110,20 +111,6 @@ unsetopt autocd
 
 if [ -f ~/.aliases ]; then
     source ~/.aliases
-fi
-
-# tested on gpg 2.0.22 (CentOS 7), 2.1.11 (Ubuntu 16.04.2) and 2.2.4 (Ubuntu 18.04.1)
-export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye > /dev/null 2>&1
-if [ $? -ne 0 ]; then
-    gpg-agent --daemon > /dev/null 2>&1
-fi
-if [ -e "${HOME}/.gnupg/S.gpg-agent.ssh" ]; then
-    # CentOS 7
-    export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
-elif [ -e "/run/user/$UID/gnupg/S.gpg-agent.ssh" ]; then
-    # Fedora 27
-    export SSH_AUTH_SOCK=/run/user/$UID/gnupg/S.gpg-agent.ssh
 fi
 
 VIRTUALENVWRAPPER_PYTHON=python3
@@ -153,8 +140,7 @@ export NVM_DIR="$HOME/.nvm"
 export TF_CLI_ARGS_plan="-parallelism=100"
 export TF_CLI_ARGS_apply="-parallelism=100"
 
-. $HOME/.asdf/asdf.sh
-. "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+eval "$(direnv hook zsh)"
 
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh --disable-up-arrow)"
