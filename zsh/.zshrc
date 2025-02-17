@@ -85,12 +85,13 @@ export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
 export PATH="$HOME/.mix/escripts:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="/usr/local/flutter/bin:$PATH"
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 if [ "$macos" = true ]; then
     export PATH="$HOME/Library/Python/3.8/bin:$PATH"
     export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 fi
+
+eval "$(mise activate zsh)"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -139,8 +140,6 @@ export NVM_DIR="$HOME/.nvm"
 # terraform
 export TF_CLI_ARGS_plan="-parallelism=100"
 export TF_CLI_ARGS_apply="-parallelism=100"
-
-eval "$(direnv hook zsh)"
 
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh --disable-up-arrow)"

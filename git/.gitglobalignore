@@ -4,6 +4,7 @@
 [._]sw[a-p]
 .idea
 .tool-versions
+mise.local.toml
 *~
 go.work
 go.work.sum
