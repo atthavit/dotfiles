@@ -114,23 +114,7 @@ if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
 
-VIRTUALENVWRAPPER_PYTHON=python3
-if [ "$macos" = true ]; then
-    VENVWRAPPER=~/Library/Python/3.9/bin/virtualenvwrapper.sh
-else
-    VENVWRAPPER=~/.local/bin/virtualenvwrapper.sh
-fi
-if [ -f $VENVWRAPPER ]; then
-    source $VENVWRAPPER
-fi
-
-# autojump (https://github.com/wting/autojump)
-[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
-
-# fzf (https://github.com/junegunn/fzf)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore node_modules --ignore deps --ignore _build -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+eval "$(zoxide init zsh --cmd j)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
