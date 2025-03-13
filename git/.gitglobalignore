@@ -9,3 +9,4 @@ mise.local.toml
 go.work
 go.work.sum
 .DS_Store
+cover.cov

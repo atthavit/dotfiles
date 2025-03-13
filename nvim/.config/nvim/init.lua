@@ -132,15 +132,7 @@ require('lazy').setup({
     ft = { 'go', 'gomod' },
     build = ':lua require("go.install").update_all_sync()',
   },
-  -- {
-  --   'RRethy/vim-illuminate',
-  --   dependencies = {'gruvbox.nvim'},
-  --   init = function()
-  --     local config = require("gruvbox").config
-  --     local colors = require("gruvbox.palette").get_base_colors(vim.o.background, config.contrast)
-  --     vim.cmd('hi IlluminatedWordText guibg=' .. colors.bg1)
-  --   end,
-  -- },
+
   {
     'thiagoalessio/rainbow_levels.vim',
     cmd = 'RainbowLevelsToggle',
@@ -158,47 +150,58 @@ require('lazy').setup({
       vim.g.openbrowser_github_select_current_line = 1
     end,
   },
+
   {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-emoji',
-      'nvim-snippy',
-    },
-    config = function()
-      local cmp = require('cmp')
-      cmp.setup({
-        preselect = cmp.PreselectMode.None,
-        snippet = {
-          expand = function(args)
-            require('snippy').expand_snippet(args.body)
+    'saghen/blink.cmp',
+    version = '*',
+    opts = {
+      keymap = {
+        preset = 'default',
+        ['<C-i>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        ['<C-k>'] = { 'select_prev', 'fallback_to_mappings' },
+        ['<C-j>'] = { 'select_next', 'fallback_to_mappings' },
+        -- ['<C-i>'] = { 'show_signature', 'hide_signature', 'fallback' },
+        ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+        ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+        ['<CR>'] = { 'select_and_accept' },
+      },
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = 'mono'
+      },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      fuzzy = {
+        implementation = "prefer_rust_with_warning",
+        sorts = {
+          function(a, b)
+            if a.client_name == nil or b.client_name == nil then return end
+            return b.client_name == 'emmet_ls'
           end,
+          -- default sorts
+          'score',
+          'sort_text',
         },
-        mapping = {
-          ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-          ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-          ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
-          ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-          ['<C-Space>'] = cmp.config.disable,
-          ['<C-y>'] = cmp.config.disable,
-          ['<C-e>'] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close(),
-          }),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      },
+      completion = {
+        accept = { auto_brackets = { enabled = false }, },
+        documentation = { auto_show = true, auto_show_delay_ms = 300 },
+      },
+      cmdline = {
+        keymap = {
+          ['<C-k>'] = { 'select_prev', 'fallback_to_mappings' },
+          ['<C-j>'] = { 'select_next', 'fallback_to_mappings' },
         },
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'snippy' },
-          { name = 'buffer' },
-          { name = 'path' },
-          { name = 'emoji' },
-        }),
-      })
-    end,
+        completion = {
+          menu = { auto_show = true },
+          ghost_text = { enabled = false }
+        },
+      }
+    },
+    opts_extend = { "sources.default" }
   },
+
   {
     'williamboman/mason.nvim',
     config = true,
@@ -221,17 +224,19 @@ require('lazy').setup({
         'jsonls',
         'lua_ls',
         'marksman',
+        'ruby_lsp',
         'sqlls',
         'taplo',
         'terraformls',
-        'ts_ls',
+        -- 'ts_ls',
+        'vtsls',
         'volar',
         'yamlls',
       },
     },
     config = function(_, opts)
       require('mason-lspconfig').setup(opts)
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
       local lspconfig = require('lspconfig')
       require('mason-lspconfig').setup_handlers {
         function(server_name)
@@ -246,6 +251,45 @@ require('lazy').setup({
             settings = {
               filetypes = { "css", "scss", "less", "javascript" }
             }
+          }
+        end,
+
+        ['elixirls'] = function(server_name)
+          lspconfig[server_name].setup {
+            cmd = { "elixir-ls" },
+          }
+        end,
+
+        ['vtsls'] = function(server_name)
+          lspconfig[server_name].setup {
+            cmd = { "elixir-ls" },
+            settings = {
+              complete_function_calls = 'asdf',
+              vtsls = {
+                enableMoveToFileCodeAction = true,
+                autoUseWorkspaceTsdk = true,
+                experimental = {
+                  maxInlayHintLength = 30,
+                  completion = {
+                    enableServerSideFuzzyMatch = true,
+                  },
+                },
+              },
+              typescript = {
+                updateImportsOnFileMove = { enabled = "always" },
+                suggest = {
+                  completeFunctionCalls = true,
+                },
+                inlayHints = {
+                  enumMemberValues = { enabled = true },
+                  functionLikeReturnTypes = { enabled = true },
+                  parameterNames = { enabled = "literals" },
+                  parameterTypes = { enabled = true },
+                  propertyDeclarationTypes = { enabled = true },
+                  variableTypes = { enabled = false },
+                },
+              },
+            },
           }
         end,
 
@@ -287,10 +331,10 @@ require('lazy').setup({
     dependencies = {
       'mason.nvim',
       'mason-lspconfig.nvim',
-      'cmp-nvim-lsp',
+      'saghen/blink.cmp',
     },
     config = function()
-      vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+      vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
       vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
@@ -403,7 +447,15 @@ require('lazy').setup({
     end
   },
   { 'stevearc/oil.nvim',        config = true },
-  { 'numToStr/Comment.nvim',    config = true },
+  {
+    'numToStr/Comment.nvim',
+    dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
+    config = function()
+      require("Comment").setup {
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      }
+    end
+  },
   {
     'MisanthropicBit/decipher.nvim',
     commit = '2533e35',
@@ -519,23 +571,6 @@ require('lazy').setup({
     end,
   },
   {
-    'dcampos/nvim-snippy',
-    dependencies = { 'dcampos/cmp-snippy' },
-    opts = {
-      mappings = {
-        is = {
-          ['<Tab>'] = 'expand_or_advance',
-          ['<S-Tab>'] = 'previous',
-          ['<c-j>'] = 'expand_or_advance',
-          ['<c-k>'] = 'previous',
-        },
-        nx = {
-          ['<leader>c'] = 'cut_text',
-        },
-      },
-    },
-  },
-  {
     "scalameta/nvim-metals",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -563,7 +598,9 @@ require('lazy').setup({
   {
     "rcarriga/nvim-notify",
     opts = {
+      stages = 'static',
       background_colour = "#000000",
+      top_down = false,
     },
     keys = {
       { '<Leader><esc>', function() require('notify').dismiss() end }
@@ -578,7 +615,6 @@ require('lazy').setup({
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
         },
       },
       -- you can enable a preset for easier configuration
@@ -637,6 +673,7 @@ require('lazy').setup({
         javascript = { "prettierd", "prettier", stop_after_first = true },
         javascriptreact = { "prettierd", "prettier", stop_after_first = true },
         typescript = { "prettierd", "prettier", stop_after_first = true },
+        python = { "black" },
         vue = { "prettierd", "prettier", stop_after_first = true },
         css = { "prettierd", "prettier", stop_after_first = true },
         scss = { "prettierd", "prettier", stop_after_first = true },
@@ -657,10 +694,26 @@ require('lazy').setup({
       },
     },
   },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+    config = function(_, opts)
+      require("typescript-tools").setup {
+        settings = {
+          tsserver_file_preferences = {
+            includeInlayParameterNameHints = "all",
+            includeCompletionsForImportStatements = true,
+          }
+        }
+      }
+      vim.keymap.set('n', '<Leader>i', ':TSToolsAddMissingImports<CR>')
+    end
+  }
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'javascript,lua,html,css',
+  pattern = 'javascript,lua,html,css,typescript,typescriptreact',
   callback = function()
     vim.opt_local.sw = 2
     vim.opt_local.ts = 2
