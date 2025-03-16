@@ -157,13 +157,12 @@ require('lazy').setup({
     opts = {
       keymap = {
         preset = 'default',
-        ['<C-i>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<C-k>'] = { 'select_prev', 'fallback_to_mappings' },
         ['<C-j>'] = { 'select_next', 'fallback_to_mappings' },
-        -- ['<C-i>'] = { 'show_signature', 'hide_signature', 'fallback' },
+        ['<C-e>'] = { 'hide' },
         ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
         ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
-        ['<CR>'] = { 'select_and_accept' },
+        ['<tab>'] = { 'select_and_accept', 'fallback' },
       },
       appearance = {
         use_nvim_cmp_as_default = true,
@@ -262,7 +261,6 @@ require('lazy').setup({
 
         ['vtsls'] = function(server_name)
           lspconfig[server_name].setup {
-            cmd = { "elixir-ls" },
             settings = {
               complete_function_calls = 'asdf',
               vtsls = {
@@ -361,6 +359,10 @@ require('lazy').setup({
           vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
           vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
           vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+          vim.keymap.set('n', '<Leader>i', function()
+            vim.lsp.buf.code_action({ apply = true, context = { only = { "source.addMissingImports.ts" }, diagnostics = {} } })
+            vim.lsp.buf.code_action({ apply = true, context = { only = { "source.removeUnused.ts" }, diagnostics = {} } })
+          end)
           -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
         end,
       })
@@ -468,7 +470,19 @@ require('lazy').setup({
   },
   {
     'kylechui/nvim-surround',
-    config = true,
+    config = function()
+      require("nvim-surround").setup({
+        surrounds = {
+            ["i"] = {
+                add = function()
+                      return {
+                          { "{t('" }, {"')}" },
+                      }
+                end,
+            },
+        },
+      })
+    end,
   },
   { 'NvChad/nvim-colorizer.lua', config = true },
   {
@@ -694,22 +708,6 @@ require('lazy').setup({
       },
     },
   },
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
-    config = function(_, opts)
-      require("typescript-tools").setup {
-        settings = {
-          tsserver_file_preferences = {
-            includeInlayParameterNameHints = "all",
-            includeCompletionsForImportStatements = true,
-          }
-        }
-      }
-      vim.keymap.set('n', '<Leader>i', ':TSToolsAddMissingImports<CR>')
-    end
-  }
 })
 
 vim.api.nvim_create_autocmd('FileType', {
