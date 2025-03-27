@@ -291,6 +291,21 @@ require('lazy').setup({
           }
         end,
 
+        ['golangci_lint_ls'] = function(server_name)
+          lspconfig[server_name].setup {
+            init_options = {
+              command = {
+                "golangci-lint",
+                "run",
+                "--output.json.path",
+                "stdout",
+                "--show-stats=false",
+                "--issues-exit-code=1",
+              },
+            }
+          }
+        end,
+
         -- use ray-x/go.nvim instead
         -- ['gopls'] = function()
         --   lspconfig['gopls'].setup {
@@ -473,13 +488,13 @@ require('lazy').setup({
     config = function()
       require("nvim-surround").setup({
         surrounds = {
-            ["i"] = {
-                add = function()
-                      return {
-                          { "{t('" }, {"')}" },
-                      }
-                end,
-            },
+          ["i"] = {
+            add = function()
+              return {
+                { "{t('" }, { "')}" },
+              }
+            end,
+          },
         },
       })
     end,
@@ -708,6 +723,7 @@ require('lazy').setup({
       },
     },
   },
+  { "junegunn/vim-peekaboo" },
 })
 
 vim.api.nvim_create_autocmd('FileType', {
