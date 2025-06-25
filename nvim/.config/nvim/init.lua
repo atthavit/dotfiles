@@ -724,6 +724,44 @@ require('lazy').setup({
     },
   },
   { "junegunn/vim-peekaboo" },
+  {
+    "zbirenbaum/copilot.lua",
+    config = true,
+    opts = {
+      suggestion = {
+        auto_trigger = true,
+        keymap = {
+          accept = "<M-l>",
+          accept_word = false,
+          accept_line = false,
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
+        }
+      }
+    },
+  },
+  {
+    "yetone/avante.nvim",
+    build = function()
+      return "make"
+    end,
+    event = "VeryLazy",
+    version = false, -- Never set this value to "*"! Never!
+    opts = {
+      provider = "copilot",
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      -- "hrsh7th/nvim-cmp",            -- autocompletion for avante commands and mentions
+      "ibhagwan/fzf-lua",            -- for file_selector provider fzf
+      -- "folke/snacks.nvim",           -- for input provider snacks
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua",      -- for providers='copilot'
+    },
+  }
 })
 
 vim.api.nvim_create_autocmd('FileType', {
