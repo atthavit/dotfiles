@@ -207,9 +207,11 @@ require('lazy').setup({
   },
   {
     'williamboman/mason-lspconfig.nvim',
-    dependencies = { 'mason.nvim' },
+    dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
+    },
     opts = {
-      automatic_installation = true,
       ensure_installed = {
         'bashls',
         'buf_ls',
@@ -227,117 +229,10 @@ require('lazy').setup({
         'sqlls',
         'taplo',
         'terraformls',
-        -- 'ts_ls',
         'vtsls',
-        'volar',
         'yamlls',
       },
     },
-    config = function(_, opts)
-      require('mason-lspconfig').setup(opts)
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
-      local lspconfig = require('lspconfig')
-      require('mason-lspconfig').setup_handlers {
-        function(server_name)
-          lspconfig[server_name].setup {}
-        end,
-
-        ['cssls'] = function(server_name)
-          local capabilities = vim.lsp.protocol.make_client_capabilities()
-          capabilities.textDocument.completion.completionItem.snippetSupport = true
-          lspconfig[server_name].setup {
-            capabilities = capabilities,
-            settings = {
-              filetypes = { "css", "scss", "less", "javascript" }
-            }
-          }
-        end,
-
-        ['elixirls'] = function(server_name)
-          lspconfig[server_name].setup {
-            cmd = { "elixir-ls" },
-          }
-        end,
-
-        ['vtsls'] = function(server_name)
-          lspconfig[server_name].setup {
-            settings = {
-              complete_function_calls = 'asdf',
-              vtsls = {
-                enableMoveToFileCodeAction = true,
-                autoUseWorkspaceTsdk = true,
-                experimental = {
-                  maxInlayHintLength = 30,
-                  completion = {
-                    enableServerSideFuzzyMatch = true,
-                  },
-                },
-              },
-              typescript = {
-                updateImportsOnFileMove = { enabled = "always" },
-                suggest = {
-                  completeFunctionCalls = true,
-                },
-                inlayHints = {
-                  enumMemberValues = { enabled = true },
-                  functionLikeReturnTypes = { enabled = true },
-                  parameterNames = { enabled = "literals" },
-                  parameterTypes = { enabled = true },
-                  propertyDeclarationTypes = { enabled = true },
-                  variableTypes = { enabled = false },
-                },
-              },
-            },
-          }
-        end,
-
-        ['golangci_lint_ls'] = function(server_name)
-          lspconfig[server_name].setup {
-            init_options = {
-              command = {
-                "golangci-lint",
-                "run",
-                "--output.json.path",
-                "stdout",
-                "--show-stats=false",
-                "--issues-exit-code=1",
-              },
-            }
-          }
-        end,
-
-        -- use ray-x/go.nvim instead
-        -- ['gopls'] = function()
-        --   lspconfig['gopls'].setup {
-        --     capabilities = capabilities,
-        --     settings = {
-        --       gopls = {
-        --         usePlaceholders = true,
-        --         analyses = {
-        --           composites = false,
-        --         },
-        --       },
-        --     },
-        --   }
-        -- end,
-
-        ['pyright'] = function(server_name)
-          lspconfig[server_name].setup {
-            capabilities = capabilities,
-            settings = {
-              python = {
-                analysis = {
-                  autoSearchPaths = true,
-                  diagnosticMode = 'workspace',
-                  typeCheckingMode = 'off',
-                }
-              }
-            },
-          }
-        end,
-
-      }
-    end,
   },
   {
     'neovim/nvim-lspconfig',
@@ -724,44 +619,6 @@ require('lazy').setup({
     },
   },
   { "junegunn/vim-peekaboo" },
-  {
-    "zbirenbaum/copilot.lua",
-    config = true,
-    opts = {
-      suggestion = {
-        auto_trigger = true,
-        keymap = {
-          accept = "<M-l>",
-          accept_word = false,
-          accept_line = false,
-          next = "<M-]>",
-          prev = "<M-[>",
-          dismiss = "<C-]>",
-        }
-      }
-    },
-  },
-  {
-    "yetone/avante.nvim",
-    build = function()
-      return "make"
-    end,
-    event = "VeryLazy",
-    version = false, -- Never set this value to "*"! Never!
-    opts = {
-      provider = "copilot",
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      -- "hrsh7th/nvim-cmp",            -- autocompletion for avante commands and mentions
-      "ibhagwan/fzf-lua",            -- for file_selector provider fzf
-      -- "folke/snacks.nvim",           -- for input provider snacks
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua",      -- for providers='copilot'
-    },
-  }
 })
 
 vim.api.nvim_create_autocmd('FileType', {
