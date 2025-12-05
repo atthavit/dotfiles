@@ -15,7 +15,7 @@ vim.opt.encoding = 'utf-8'
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 vim.opt.timeoutlen = 500
-vim.opt.mouse = 'c'
+vim.opt.mouse = 'a'
 
 vim.wo.wrap = false
 vim.wo.foldenable = false
