@@ -9,6 +9,7 @@ config.font = wezterm.font("JetBrains Mono")
 config.font_size = 11
 config.harfbuzz_features = { "calt=0" }
 config.color_scheme = "GruvboxDarkHard"
+config.colors = { background = "black" }
 config.tab_bar_at_bottom = true
 
 config.mouse_bindings = {
@@ -68,6 +69,18 @@ config.keys = {
 			end),
 		}),
 	},
+	{
+		key = ",",
+		mods = "LEADER",
+		action = wezterm.action.PromptInputLine({
+			description = "Enter new name for tab",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
+		}),
+	},
 }
 
 local copy_mode = wezterm.gui.default_key_tables().copy_mode
@@ -123,5 +136,37 @@ config.key_tables = {
 	copy_mode = copy_mode,
 	search_mode = search_mode,
 }
+
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+
+local function tabname(tab)
+	if #tab.tab_title == 0 then
+		return ""
+	end
+	return tab.tab_title .. " "
+end
+
+local tabconfig = {
+	"index",
+	tabname,
+	{ "process", padding = { left = 0, right = 1 } },
+	{ "output", padding = 0 },
+}
+
+tabline.setup({
+	options = { theme = config.color_scheme },
+	sections = {
+		tabline_a = { "workspace" },
+		tabline_b = { "" },
+		tabline_c = { "" },
+		tab_active = tabconfig,
+		tab_inactive = tabconfig,
+		tabline_x = { "ram", "cpu" },
+		tabline_y = { "datetime", "battery" },
+		tabline_z = { "domain" },
+	},
+})
+
+tabline.apply_to_config(config)
 
 return config
