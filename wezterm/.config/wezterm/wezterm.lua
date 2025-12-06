@@ -168,5 +168,6 @@ tabline.setup({
 })
 
 tabline.apply_to_config(config)
+config.window_decorations = "TITLE | RESIZE"
 
 return config
