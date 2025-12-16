@@ -116,7 +116,9 @@ for _, key in ipairs({
 	{ key = "n", mods = "NONE", action = act.CopyMode("NextMatch") },
 	{ key = "n", mods = "SHIFT", action = act.CopyMode("PriorMatch") },
 	{ key = "u", mods = "CTRL", action = act.ScrollByPage(-0.5) },
+	{ key = "y", mods = "CTRL", action = act.ScrollByLine(-1) },
 	{ key = "d", mods = "CTRL", action = act.ScrollByPage(0.5) },
+	{ key = "e", mods = "CTRL", action = act.ScrollByLine(1) },
 	{ key = "PageUp", mods = "NONE", action = act.ScrollByPage(-0.5) },
 	{ key = "PageDown", mods = "NONE", action = act.ScrollByPage(0.5) },
 }) do
