@@ -619,6 +619,31 @@ require('lazy').setup({
     },
   },
   { "junegunn/vim-peekaboo" },
+  {
+    "NickvanDyke/opencode.nvim",
+    dependencies = {
+      { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
+    },
+    config = function()
+      vim.g.opencode_opts = {
+        provider = {
+          enabled = "wezterm",
+          wezterm = {
+            direction = "right",
+            percent = "30",
+          }
+        },
+      }
+      vim.o.autoread = true
+      vim.keymap.set(
+        { "n", "x" }, "<leader>a",
+        function()
+          require("opencode").ask("@this: ", { submit = true })
+        end,
+        { desc = "Ask opencode" }
+      )
+    end,
+  }
 })
 
 vim.api.nvim_create_autocmd('FileType', {

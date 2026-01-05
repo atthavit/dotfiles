@@ -47,6 +47,7 @@ config.keys = {
 	{ key = "z", mods = "LEADER",       action = act.TogglePaneZoomState },
 	{ key = "c", mods = "LEADER",       action = act.SpawnTab("CurrentPaneDomain") },
 	{ key = "q", mods = "LEADER",       action = act.PaneSelect({ alphabet = "1234567890" }) },
+	{ key = "q", mods = "LEADER|SHIFT", action = act.PaneSelect({ alphabet = "1234567890", mode = 'SwapWithActive' }) },
 	{ key = "o", mods = "LEADER",       action = act.ActivatePaneDirection("Prev") },
 	{ key = "o", mods = "LEADER|CTRL",  action = act.RotatePanes("Clockwise") },
 	{ key = "h", mods = "LEADER",       action = act.ActivatePaneDirection("Left") },
