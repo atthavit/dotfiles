@@ -18,6 +18,21 @@ config.mouse_bindings = {
 		action = act.SelectTextAtMouseCursor("SemanticZone"),
 		mods = "NONE",
 	},
+	{
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'NONE',
+    action = act.CompleteSelection 'ClipboardAndPrimarySelection',
+  },
+	{
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'CMD',
+    action = act.OpenLinkAtMouseCursor,
+  },
+	{
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'CTRL',
+    action = act.OpenLinkAtMouseCursor,
+  },
 }
 
 config.leader = { key = "b", mods = "CTRL" }
@@ -33,6 +48,7 @@ config.keys = {
 	{ key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
 	{ key = "q", mods = "LEADER", action = act.PaneSelect({ alphabet = "1234567890" }) },
 	{ key = "o", mods = "LEADER", action = act.ActivatePaneDirection("Prev") },
+	{ key = "o", mods = "LEADER|CTRL", action = act.RotatePanes("Clockwise") },
 	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
 	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
 	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
@@ -56,6 +72,7 @@ config.keys = {
 
 	-- WORKSPACES
 	{ key = "s", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "WORKSPACES" }) },
+	{ key = "l", mods = "LEADER|SHIFT", action = act.SwitchWorkspaceRelative(-1) },
 	{ key = "(", mods = "LEADER|SHIFT", action = act.SwitchWorkspaceRelative(-1) },
 	{ key = ")", mods = "LEADER|SHIFT", action = act.SwitchWorkspaceRelative(1) },
 	{ key = "[", mods = "LEADER", action = act.ActivateCopyMode },
