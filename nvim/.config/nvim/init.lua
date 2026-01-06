@@ -637,10 +637,12 @@ require('lazy').setup({
       vim.o.autoread = true
       vim.keymap.set(
         { "n", "x" }, "<leader>a",
-        function()
-          require("opencode").ask("@this: ", { submit = true })
-        end,
+        function() require("opencode").ask("@this: ", { submit = true }) end,
         { desc = "Ask opencode" }
+      )
+      vim.keymap.set(
+        { "n", "x" }, "<leader>s",
+        function() require("opencode").select() end
       )
     end,
   }
