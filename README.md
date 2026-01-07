@@ -4,21 +4,10 @@ git clone https://github.com/atthavit/dotfiles.git
 cd dotfiles
 mkdir ~/.config
 stow aliases
-stow powerline
-stow tmux
 stow nvim
 stow zsh
 ...
 ```
-
-tmux
-====
-* powerline  
-
-    ```
-    pip install --user powerline-status
-    ```
-
 
 zsh
 ===
