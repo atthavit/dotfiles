@@ -246,6 +246,9 @@ require('lazy').setup({
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
       vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+      vim.keymap.set('n', '<leader>h', function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+      end, { desc = 'Toggle inlay hints' })
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
@@ -645,7 +648,7 @@ require('lazy').setup({
         function() require("opencode").select() end
       )
     end,
-  }
+  },
 })
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -677,3 +680,9 @@ vim.keymap.set('i', '<c-space>', '<c-x><c-o>', opts)
 vim.g.omni_sql_no_default_maps = 1
 
 vim.keymap.set({ 'n', 'v' }, '\'', '`', { remap = true })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
+    end,
+})
